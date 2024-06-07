@@ -1,6 +1,6 @@
 {
     "name": "VScode R Workshop",
-    "image": "rocker/r-base:4.4.0",
+    "image": "docker.io/rkrispin/baser:arm64.4.4.0",
     // "build": {
     //     "dockerfile": "Dockerfile",
     //     "context": "."
