@@ -1,5 +1,5 @@
 ---
-title: "Setting Up a Dockerized R Development Environment with VScode 🐳"
+title: "Introduction 🐳"
 subtitle: "R/Medicine 2024 Conference"
 author: "Rami Krispin"
 ---
@@ -17,6 +17,7 @@ Materials for the [R/Medicine 2024 conference](https://rconsortium.github.io/RMe
 ## Prerequisites
 
 The workshop required basic knowledge of the following:
+
 - CLI commands
 - Bash scripting
 
@@ -26,6 +27,7 @@ It is nice to have knowledge of Docker and working with containers. The first ho
 ## Requirements
 
 If you want to follow along with the code examples during the workshop, you should have the following tools installed:
+
 - Docker
 - Docker Hub account
 - VScode

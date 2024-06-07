@@ -1,0 +1,29 @@
+project:
+  type: website
+  execute-dir: project
+  output-dir: docs
+  render:
+    - index.qmd
+    - settings.qmd
+
+website:
+  title: "R/Medicine R VScode Workshop"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+  sidebar:
+    style: "docked"
+    search: true
+    contents: 
+      - index.qmd
+      - settings.qmd
+
+format:
+  html:
+    theme: default
+    css: styles.css
+    toc: true
+
+
+
