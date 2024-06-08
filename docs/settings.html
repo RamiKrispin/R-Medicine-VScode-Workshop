@@ -151,10 +151,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#hello-world" id="toc-hello-world" class="nav-link" data-scroll-target="#hello-world">Hello World!</a></li>
   </ul></li>
-  <li><a href="#installing-vscode" id="toc-installing-vscode" class="nav-link" data-scroll-target="#installing-vscode">Installing VScode</a>
-  <ul class="collapse">
-  <li><a href="#install-the-dev-containers-extension" id="toc-install-the-dev-containers-extension" class="nav-link" data-scroll-target="#install-the-dev-containers-extension">Install the Dev Containers Extension</a></li>
-  </ul></li>
+  <li><a href="#installing-vscode" id="toc-installing-vscode" class="nav-link" data-scroll-target="#installing-vscode">Installing VScode</a></li>
   </ul>
 </nav>
     </div>
@@ -180,18 +177,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Throughout the workshop, we will use VScode and leverage Docker. To follow the workshop materials and run the code, you will need the following tools install and set:</p>
-<ul>
-<li>Docker Desktop (or equivalent)</li>
-<li>Docker Hub account</li>
-<li>VScode</li>
-<li>Dev Containers extension</li>
-</ul>
-<p>Please check the sections below for guidance on setting up the above requirements.</p>
+<p>Throughout the workshop, we will use VScode and leverage Docker. To follow the workshop materials and run the code, you will need the following settings: - Docker Desktop (or equivalent) - Docker Hub account - VScode - Dev Containers extension</p>
 <section id="workshop-materials" class="level2">
 <h2 class="anchored" data-anchor-id="workshop-materials">Workshop Materials</h2>
 <p>All the workshop materials avaialble on the below repository:</p>
-<p><a href="https://github.com/RamiKrispin/R-Medicine-VScode-Workshop">https://github.com/RamiKrispin/R-Medicine-VScode-Workshop</a></p>
+<p>https://github.com/RamiKrispin/R-Medicine-VScode-Workshop</p>
 <p>Please fork and clone to your local machine.</p>
 </section>
 <section id="setting-docker" class="level2">
@@ -261,7 +251,7 @@ Status: Downloaded newer image for docker/whalesay:latest</code></pre>
 </section>
 <section id="installing-vscode" class="level2">
 <h2 class="anchored" data-anchor-id="installing-vscode">Installing VScode</h2>
-Installing VScode is straightforward - go to the VScode website <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a> and click on the Download button (purple rectangle on the screenshot):
+Installing VScode is straightforward - go to the VScode website https://code.visualstudio.com/ and click on the Download button (purple rectangle on the screenshot):
 <figure class="figure">
 <img src="images/vscode-download.png" width="100%" align="center" class="figure-img">
 <figcaption>
@@ -269,14 +259,12 @@ Figure 2 - Visual Studio Code download page
 </figcaption>
 </figure>
 <p>Download the installation file and follow the instructions.</p>
-<section id="install-the-dev-containers-extension" class="level3">
-<h3 class="anchored" data-anchor-id="install-the-dev-containers-extension">Install the Dev Containers Extension</h3>
-<p>Last but not least, we will install the Dev Containers extension following the below steps:</p>
+<p>To set the Python environment with Docker in VScode we will need the following extensions:</p>
 <ul>
-<li>Click the Extensions button on the left menu (mark with a purple arrow on the screenshot below)</li>
-<li>Type the extension name - Dev Containers, on the search menu (see the yellow rectangular). You can see the search results below, and clicking on each extension will open a window with the extension details.</li>
-<li>Last but not least, Click the install button (see the green rectangular) to install the extension</li>
+<li><strong>Dev Containers</strong> - this extension enables to open a folder and execute a code inside a Docker container (more info available <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">here</a>)</li>
+<li><strong>Python</strong> - the main Python plug-in for VScode, enables to execute, debugging, code navigation, code formatting, etc. (more info available <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">here</a>)</li>
 </ul>
+Here is how to install an extension on VScode: - Click the Extensions button on the left menu (mark with a purple arrow on the screenshot below) - Type the extension name on the search menu (see the yellow rectangular). You can see the search results below, and clicking on each extension will open a window with the extension details. - Last but not least, Click the install button (see the green rectangular) to install the extension
 <figure class="figure">
 <img src="images/vscode-extensions.png" width="100%" align="center" class="figure-img">
 <figcaption>
@@ -287,7 +275,6 @@ Figure 3 - Steps to install extension on VScode
 <p><strong>Note:</strong> The Dev Containers extension is required to launch the dockerized environment. We will see later in this tutorial how to set and install the necessary extensions for your dockerized environment automatically with the <code>devcontainer.json</code> file.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

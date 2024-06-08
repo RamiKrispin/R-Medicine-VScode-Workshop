@@ -4,7 +4,7 @@
     "href": "settings.html",
     "title": "Settings",
     "section": "",
-    "text": "Throughout the workshop, we will use VScode and leverage Docker. To follow the workshop materials and run the code, you will need the following tools install and set:\nPlease check the sections below for guidance on setting up the above requirements.",
+    "text": "Throughout the workshop, we will use VScode and leverage Docker. To follow the workshop materials and run the code, you will need the following settings: - Docker Desktop (or equivalent) - Docker Hub account - VScode - Dev Containers extension",
     "crumbs": [
       "Home",
       "Settings"
@@ -48,7 +48,7 @@
     "href": "settings.html#installing-vscode",
     "title": "Settings",
     "section": "Installing VScode",
-    "text": "Installing VScode\nInstalling VScode is straightforward - go to the VScode website https://code.visualstudio.com/ and click on the Download button (purple rectangle on the screenshot):\n\n\n\nFigure 2 - Visual Studio Code download page\n\n\nDownload the installation file and follow the instructions.\n\nInstall the Dev Containers Extension\nLast but not least, we will install the Dev Containers extension following the below steps:\n\nClick the Extensions button on the left menu (mark with a purple arrow on the screenshot below)\nType the extension name - Dev Containers, on the search menu (see the yellow rectangular). You can see the search results below, and clicking on each extension will open a window with the extension details.\nLast but not least, Click the install button (see the green rectangular) to install the extension\n\n\n\n\nFigure 3 - Steps to install extension on VScode\n\n\n\nNote: The Dev Containers extension is required to launch the dockerized environment. We will see later in this tutorial how to set and install the necessary extensions for your dockerized environment automatically with the devcontainer.json file.",
+    "text": "Installing VScode\nInstalling VScode is straightforward - go to the VScode website https://code.visualstudio.com/ and click on the Download button (purple rectangle on the screenshot):\n\n\n\nFigure 2 - Visual Studio Code download page\n\n\nDownload the installation file and follow the instructions.\nTo set the Python environment with Docker in VScode we will need the following extensions:\n\nDev Containers - this extension enables to open a folder and execute a code inside a Docker container (more info available here)\nPython - the main Python plug-in for VScode, enables to execute, debugging, code navigation, code formatting, etc. (more info available here)\n\nHere is how to install an extension on VScode: - Click the Extensions button on the left menu (mark with a purple arrow on the screenshot below) - Type the extension name on the search menu (see the yellow rectangular). You can see the search results below, and clicking on each extension will open a window with the extension details. - Last but not least, Click the install button (see the green rectangular) to install the extension\n\n\n\nFigure 3 - Steps to install extension on VScode\n\n\n\nNote: The Dev Containers extension is required to launch the dockerized environment. We will see later in this tutorial how to set and install the necessary extensions for your dockerized environment automatically with the devcontainer.json file.",
     "crumbs": [
       "Home",
       "Settings"
