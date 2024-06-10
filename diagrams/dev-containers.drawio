@@ -1,0 +1,67 @@
+<mxfile host="Electron" modified="2024-06-09T05:28:52.462Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.1 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="Y_IdkDxnZOb-ISoB_hpt" version="24.5.1" type="device">
+  <diagram name="Page-1" id="6jLMefp7sml5YJYC6p_h">
+    <mxGraphModel dx="1242" dy="904" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="_0ymp65aLalTKgiKntQF-20" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="229" y="20" width="593" height="634" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry y="33" width="593" height="601" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-2" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://code.visualstudio.com/assets/images/code-stable.png;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="48.5" y="38" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-3" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;settings.json&lt;/font&gt;&lt;/b&gt;" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.json;aspect=fixed;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="56" y="188.02" width="85" height="92.04" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-4" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;devcontainers.json&lt;/font&gt;&lt;/b&gt;" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.json;aspect=fixed;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="56" y="340.78" width="85" height="92.04" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-5" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/general/Files.svg;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="58.5" y="479" width="80" height="87.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-6" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="246" y="164" width="316" height="456" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-7" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;strokeWidth=2;shape=mxgraph.arrows2.arrow;dy=0.6;dx=40;notch=0;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="183" y="216.54" width="135" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-8" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://code.visualstudio.com/assets/images/code-stable.png;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="359" y="194.04" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-9" value="" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Docker.svg;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="364" y="354" width="85" height="69.7" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-11" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/general/Files.svg;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="364" y="479" width="80" height="87.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-12" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;strokeWidth=2;shape=mxgraph.arrows2.arrow;dy=0.6;dx=40;notch=0;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="185" y="369.29999999999995" width="135" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-13" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;strokeWidth=2;shape=mxgraph.arrows2.arrow;dy=0.6;dx=40;notch=0;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="183" y="505.25" width="135" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-14" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Local Folder&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="47" y="566.5" width="108.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-15" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Mounted Folder&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="340.5" y="566.5" width="118.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-16" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;VSCode Project Settings&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="337.25" y="278" width="133.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-17" value="&lt;b&gt;&lt;font style=&quot;font-size: 15px;&quot;&gt;Container&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="345.5" y="432.82" width="108.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-18" value="&lt;b&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;Dev Container Session&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="291" y="132" width="226" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="_0ymp65aLalTKgiKntQF-19" value="&lt;b&gt;&lt;font color=&quot;#ffffff&quot; style=&quot;font-size: 24px;&quot;&gt;Visual Studio Code Project&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="_0ymp65aLalTKgiKntQF-20">
+          <mxGeometry x="138" width="317" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
