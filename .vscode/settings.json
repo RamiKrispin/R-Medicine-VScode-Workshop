@@ -4,5 +4,6 @@
     "r.sessionWatcher": true,
     "r.plot.useHttpgd": true,
     "r.lsp.diagnostics": true,
-    "workbench.editor.showTabs": "multiple"
+    "workbench.editor.showTabs": "multiple",
+    "workbench.colorTheme": "Default Dark+"
 }
