@@ -9,8 +9,8 @@
         "vscode": {
             "extensions": [
                 // R Extensions
-                "reditorsupport.r",
                 "rdebugger.r-debugger",
+                "reditorsupport.r",
                 "posit.shiny",
                 // Documentation Extensions
                 "quarto.quarto",
