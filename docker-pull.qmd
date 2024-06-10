@@ -1,0 +1,177 @@
+---
+title: "Docker Pull"
+---
+
+WIP
+
+The `docker pull` command, as the name implies, enables us to pull images from an image registery service to the local machine. Likewise, the `docker push` command enables to push images from the local machine to the image registery.
+
+
+Throughout the workshop, we will use [Docker Hub](https://hub.docker.com/) to pull and push images. Before getting started, make sure that the Docker Desktop is open and login to your Docker Hub account using the `docker login` command:
+
+``` shell
+ docker login
+ ```
+
+ You will have to enter your Docker Hub username and password, and you should expect the following output if the login is successful:
+
+```shell
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: rkrispin
+Password:
+Login Succeeded
+
+Logging in with your password grants your terminal complete access to your account.
+For better security, log in with a limited-privilege personal access token. Learn more at https://docs.docker.com/go/access-tokens/
+```
+
+Next, let's use the `docker pull` command to pull `r-base` image from the [Rocker project](https://hub.docker.com/r/rocker/r-base):
+
+```shell
+docker pull rocker/r-base
+```
+
+By default, if image tag is not specify, it will pull the latest version, in this case tagged as `latest`:
+```shell
+latest: Pulling from rocker/r-base
+dd55a40fdbce: Pull complete
+f5be2f3d564a: Pull complete
+871f8609f7aa: Pull complete
+4341d4d0ed70: Pull complete
+db1a17629c49: Pull complete
+1b6d85ef75d6: Pull complete
+Digest: sha256:76d5085d8f7f956d657fa8157119ee721e200768ebf4238e8eb7622963741a52
+Status: Downloaded newer image for rocker/r-base:latest
+docker.io/rocker/r-base:latest
+```
+
+You can notice from above log that Docker pulls the images by its layers. Each layer has a unique identifier and if it already exists in the local machine it will use. We can use the `docker images` command to review the image details:
+
+```shell
+docker images
+```
+
+And you should expect the below output:
+
+```shell
+REPOSITORY                                                                      TAG           IMAGE ID       CREATED        SIZE
+rocker/r-base                                                                   latest        b45bc6363d5c   6 weeks ago    900MB
+```
+
+To get a comprehensive details on the image you can use the `inspect` command:
+
+```shell
+docker inspect rocker/r-base
+```
+
+The output includes a comprehensive metadata, such as the envornment variable, image layers and size, architecture type:
+
+``` shell
+[
+    {
+        "Id": "sha256:b45bc6363d5cb106d0eb8487b063d31fdfd69303930ef9197321761a325a759c",
+        "RepoTags": [
+            "rocker/r-base:latest"
+        ],
+        "RepoDigests": [
+            "rocker/r-base@sha256:76d5085d8f7f956d657fa8157119ee721e200768ebf4238e8eb7622963741a52"
+        ],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2024-04-24T12:34:24.227798748-05:00",
+        "Container": "",
+        "ContainerConfig": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": null,
+            "Cmd": null,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": null
+        },
+        "DockerVersion": "",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LC_ALL=en_US.UTF-8",
+                "LANG=en_US.UTF-8",
+                "R_BASE_VERSION=4.4.0"
+            ],
+            "Cmd": [
+                "R"
+            ],
+            "ArgsEscaped": true,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.authors": "Dirk Eddelbuettel <edd@debian.org>",
+                "org.opencontainers.image.licenses": "GPL-2.0-or-later",
+                "org.opencontainers.image.source": "https://github.com/rocker-org/rocker",
+                "org.opencontainers.image.vendor": "Rocker Project"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 899834336,
+        "VirtualSize": 899834336,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/8cc3007974934c112d67461ae50da63bd63100233c34cb09c94f4886d95a9d51/diff:/var/lib/docker/overlay2/6beb7739ac622c7420d0c5be0786f93e375415cbe4ec310deda1f500ef078f69/diff:/var/lib/docker/overlay2/13ccc1c83e6367b0422d6535f75044675d01846eabb92dc858d24714a14f40e0/diff:/var/lib/docker/overlay2/802733b21e8b4d2d6438066ca43305dfd77f81b0ca11722b2c1800aabc3c8b7f/diff:/var/lib/docker/overlay2/b254b8787a1e1d685b98905789cf8768b766ef3713ecff1c0256a7e0243b1eaa/diff",
+                "MergedDir": "/var/lib/docker/overlay2/dc75f5a9acdf97a2c3f1d0c48ca2fe17be9ade944a728bff41b3bd07d7beebdd/merged",
+                "UpperDir": "/var/lib/docker/overlay2/dc75f5a9acdf97a2c3f1d0c48ca2fe17be9ade944a728bff41b3bd07d7beebdd/diff",
+                "WorkDir": "/var/lib/docker/overlay2/dc75f5a9acdf97a2c3f1d0c48ca2fe17be9ade944a728bff41b3bd07d7beebdd/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:15825d671d3afd92546b589ed5c937299492a038da84eec0e6c0674fa594823e",
+                "sha256:58333b745bb8d03be4c9ff93a47e50f5569ab7925fd5036339f5b26c5cfd25bd",
+                "sha256:7868e7ea14cebd7f057115bed94ef907e325cd706ea585e5b9bc3ea42940514a",
+                "sha256:c2016d4ea8f014664f67c68736f1f7c6d098c49a92f18b7ed3e4f077f87bb367",
+                "sha256:45c736116a28d88a37d67b485683e43dc8ead81224d4505b9237d89398ff07d1",
+                "sha256:8911ae004132b1e2cb1e3bb1ee798c99a667fa8dfd2650aa6780982dfe5dbf1c"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "0001-01-01T00:00:00Z"
+        }
+    }
+]
+```
+
+One thing to notice, the `r-base` image has an execution command (i.e., `CMD`) to launch R:
+
+```shell
+docker inspect rocker/r-base | jq '.[]| .Config.Cmd'
+[
+  "R"
+]
+```
+
+
+

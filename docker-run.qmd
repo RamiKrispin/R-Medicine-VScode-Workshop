@@ -1,0 +1,54 @@
+---
+title: "Docker Run"
+---
+WIP
+
+In this section, we will review the `docker run` command. The `docker run` command enables us to spin an image into a container. Let's use the `run` command to launch the `r-base` image we pulled in the previous section inside a container:
+
+``` shell
+docker run rocker/r-base
+```
+
+This will results in the below warning and error:
+
+``` shell
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+Fatal error: you must specify '--save', '--no-save' or '--vanilla'
+```
+The main reason for getting this error is releated to the execution type of the container which is not aligned with CMD command. To solve this issue we will run the container in an interactive mode using the `--interactive --tty` arguments:
+
+```shell
+docker run --interactive --tty rocker/r-base
+```
+
+This will open R session inside a container:
+
+```shell
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+
+R version 4.4.0 (2024-04-24) -- "Puppy Cup"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+>
+```
+
+
+docker ps
+
+docker exec
+

@@ -5,6 +5,9 @@ project:
   render:
     - index.qmd
     - settings.qmd
+    - docker-intro.qmd
+    - cli-commands.qmd
+    - docker-pull.qmd
 
 website:
   title: "R/Medicine R VScode Workshop"
@@ -18,6 +21,9 @@ website:
     contents: 
       - index.qmd
       - settings.qmd
+      - docker-intro.qmd
+      - cli-commands.qmd
+      - docker-pull.qmd
 
 format:
   html:
