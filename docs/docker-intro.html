@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R/Medicine R VScode Workshop – Settings</title>
+<title>R/Medicine R VScode Workshop – Introduction to Docker</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./settings.html">Settings</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./docker-intro.html">Introduction to Docker</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -131,13 +131,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./settings.html" class="sidebar-item-text sidebar-link active">
+  <a href="./settings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Settings</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker-intro.html" class="sidebar-item-text sidebar-link">
+  <a href="./docker-intro.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Introduction to Docker</span></a>
   </div>
 </li>
@@ -157,16 +157,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#workshop-materials" id="toc-workshop-materials" class="nav-link active" data-scroll-target="#workshop-materials">Workshop Materials</a></li>
-  <li><a href="#setting-docker" id="toc-setting-docker" class="nav-link" data-scroll-target="#setting-docker">Setting Docker</a></li>
-  <li><a href="#docker-hub" id="toc-docker-hub" class="nav-link" data-scroll-target="#docker-hub">Docker Hub</a>
-  <ul class="collapse">
-  <li><a href="#hello-world" id="toc-hello-world" class="nav-link" data-scroll-target="#hello-world">Hello World!</a></li>
-  </ul></li>
-  <li><a href="#installing-vscode" id="toc-installing-vscode" class="nav-link" data-scroll-target="#installing-vscode">Installing VScode</a>
-  <ul class="collapse">
-  <li><a href="#install-the-dev-containers-extension" id="toc-install-the-dev-containers-extension" class="nav-link" data-scroll-target="#install-the-dev-containers-extension">Install the Dev Containers Extension</a></li>
-  </ul></li>
+  <li><a href="#what-is-docker" id="toc-what-is-docker" class="nav-link active" data-scroll-target="#what-is-docker">What is Docker?</a></li>
+  <li><a href="#docker-for-data-science" id="toc-docker-for-data-science" class="nav-link" data-scroll-target="#docker-for-data-science">Docker for Data Science</a></li>
   </ul>
 </nav>
     </div>
@@ -175,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Settings</h1>
+<h1 class="title">Introduction to Docker</h1>
 </div>
 
 
@@ -192,114 +184,54 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Throughout the workshop, we will use VScode and leverage Docker. To follow the workshop materials and run the code, you will need the following tools install and set:</p>
+<p>In my data science career, one major technical milestone (after learning how to code and adopt Git) was learning Docker and starting to use it. It opened a new world of opportunities, from automating processes to deploying data science work in production. This section defines what Docker is and the data science applications and use cases.</p>
+<section id="what-is-docker" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-docker">What is Docker?</h2>
+<p>Docker is a CI/CD tool that enables seamless code deployment from development to production environments. By creating OS-level virtualization, it can package an application and its dependencies in a virtual container and ship it between different environments. The main advantages of using Docker within your development environment are:</p>
 <ul>
-<li>Docker Desktop (or equivalent)</li>
-<li>Docker Hub account</li>
-<li>VScode</li>
-<li>Dev Containers extension</li>
+<li><strong>Reproducibility -</strong> Docker enables you to seamlessly package your code and its dependencies into a single container and execute, test, share, and deploy it with a high level of consistency</li>
+<li><strong>Collaboration -</strong> Docker solves the dependencies madness when a team of developers works together on a specific project. Having a unified environment saves a ton of time during the development step. For example, if one developer gets some error, it is easy for other developers to reproduce the error and help debug it</li>
+<li><strong>Deployment -</strong> Docker simplifies the code shipment from the development environment to the production</li>
 </ul>
-<p>Please check the sections below for guidance on setting up the above requirements.</p>
-<section id="workshop-materials" class="level2">
-<h2 class="anchored" data-anchor-id="workshop-materials">Workshop Materials</h2>
-<p>All the workshop materials avaialble on the below repository:</p>
-<p><a href="https://github.com/RamiKrispin/R-Medicine-VScode-Workshop">https://github.com/RamiKrispin/R-Medicine-VScode-Workshop</a></p>
-<p>Please fork and clone to your local machine.</p>
 </section>
-<section id="setting-docker" class="level2">
-<h2 class="anchored" data-anchor-id="setting-docker">Setting Docker</h2>
-<p>Various ways exist to build and run Docker images on different operations systems. For the purpose of this guide, we will be utilizing Docker Desktop. It is a user-friendly container management interface that is compatible with MacOS, Windows, and Linux operating systems.</p>
-<p><strong>Note:</strong> Docker Desktop is free for personal use but requires a license for commercial use. For further information, please refer to https://www.docker.com/pricing/.</p>
-To install Docker Desktop, go to Docker website and follow the installation instructions according to your OS:
+<section id="docker-for-data-science" class="level2">
+<h2 class="anchored" data-anchor-id="docker-for-data-science">Docker for Data Science</h2>
+<p>Docker was built to solve a common DevOps problem - the lack of reproducibility when shifting code between different environments (e.g., dev to prod). <strong>Reproducibility</strong> is not limited to DevOps, and it plays a critical role in the field of data science. We can define reproducibility as the ability to generate the <strong>exact outcome</strong> when running the same code <strong>regardless of the user or machine</strong> on which the code is running.</p>
+<p>The first time I heard the term reproducibility was during my bachelor’s degree, where I learned that reproducibility starts and ends by setting a <strong>seed</strong> number to lock down random numbers. My favorite seed number is 12345. When I started to work as a data scientist, I realized that reproducibility goes beyond setting a seed number. Here are the main elements that can impact code reproducibility:</p>
+<ul>
+<li><strong>Version control —</strong> First and foremost, reproducing the same results starts with the ability to track changes in your code Randomization — Controlling the random generation of numbers by setting the seed number</li>
+<li><strong>Software version —</strong> The versions of your Python or R (or any other programming language) and its dependencies (e.g., libraries) impact the outcome of your code. For example, code that was built with pandas v1.0 may not run on v2.0 due to deprecation of functions</li>
+<li><strong>Operating System (OS) —</strong> Most programming languages, particularly R and Python, use different compilers (e.g., C, C++, etc.) and other built-in OS components. The type of OS and its version could impact the outcome of your code</li>
+<li><strong>Hardware —</strong> Last but not, the type of hardware (or infrastructure) could impact your results (ARM/Intel/Apple processor, etc)</li>
+</ul>
+<p>In a regular data science workflow, reproducibility is dependent on several factors. One of the most basic and trivial elements of reproducibility is <strong>code versioning</strong>. Using unversioned code makes it impossible to track changes in your code or verify that the same code runs on different environments.</p>
+<p>Another critical factor is <strong>package versioning</strong>. Over time, packages and their dependencies tend to change and evolve, get new features, bug fixes, replace and deprecate old functions. In some cases, running your code using a specific package version may not work or yield the same results as older or newer versions of the package. For example, code written with Pandas 1.x may not work with Pandas 2.x, and vice versa.</p>
+<p>Similarly, <strong>programming languages</strong> tend to change over time, and using code built with older versions may not work or be supported with recent ones. Moreover, different operating systems use different software architectures or run different types of compilers (c, c++, etc.) on the backend. This difference may impact the reproducibility of your code.</p>
+<p>Lastly, the type of <strong>CPU architecture</strong> (ARM, Intel, Apple Silocon, etc.) may impact the underlying software. Some packages or software may require a separate build or may not be supported, which can ultimately affect the reproducibility of your code.</p>
+<p>Below is Figure 1, which illustrates the factors affecting code reproducibility when transferring between different environments.</p>
+<p><br></p>
 <figure class="figure">
-<img src="images/docker-install.png" width="100%" align="center" class="figure-img">
+<img src="images/reproducibility without Docker.png" width="100%" align="center" class="figure-img">
 <figcaption>
-Figure 1 - Docker Desktop download page
+Figure 1 - Shifting code between environments, what could go wrong?
 </figcaption>
 </figure>
 <p><br></p>
-</section>
-<section id="docker-hub" class="level2">
-<h2 class="anchored" data-anchor-id="docker-hub">Docker Hub</h2>
-<p>Container Registry has a similar functionality as Github for code, and it uses to store and share images. There are many container registries, and the most common is Docker Hub. We will use throughout the tutorial Docker Hub to pull different images, such as Python built-in images. To register and create an account go to https://hub.docker.com and follow the registration instructions.</p>
-<p>After installing Docker Desktop and setting account on Docker Hub, open Docker Desktop, and from the command line, login to Docker Hub:</p>
-<pre class="shell"><code> docker login</code></pre>
-<p>You will have to enter your username and password, and you should expect the following output if the login is successful:</p>
-<pre class="shell"><code>Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
-Username: rkrispin
-Password:
-Login Succeeded
-
-Logging in with your password grants your terminal complete access to your account.
-For better security, log in with a limited-privilege personal access token. Learn more at https://docs.docker.com/go/access-tokens/</code></pre>
-<p><strong>Note:</strong> Docker Hub is completely public (for the free tier). Any image you push and store there will be available for all other users. Regardless if your container registry is public or not, <strong>NEVER</strong> store credentials, passwords, or any other sensitive information on your Docker images.</p>
-<section id="hello-world" class="level3">
-<h3 class="anchored" data-anchor-id="hello-world">Hello World!</h3>
-<p>There is no better way to test if Docker was installed properly than by running whalesay (or 🐳 say) Docker’s most <code>Hello World!</code> common example. The whalesay is an adaption of the Linux cowsay (🐮 say) game using a whale instead of a cow to print some text. Let’s run the below code from the terminal to print <code>Welcome to the Docker for Data Science Workshop! 👋🏼</code>:</p>
-<pre class="shell"><code>docker run docker/whalesay cowsay Welcome to the Setting Up a Dockerized R Development Environment with VScode Workshop! 👋🏼</code></pre>
-<p>If this is the first time you are using Docker or your first time using the <code>whalesay</code> image you should expect the following message:</p>
-<pre class="shell"><code>Unable to find image 'docker/whalesay:latest' locally</code></pre>
-<p>That is a generic message that notifies that the requested image cannot be found locally, and Docker will try to pull the image from the hub (if specified) and follow by downloading the image:</p>
-<pre class="shell"><code>latest: Pulling from docker/whalesay
-Image docker.io/docker/whalesay:latest uses outdated schema1 manifest format. Please upgrade to a schema2 image for better future compatibility. More information at https://docs.docker.com/registry/spec/deprecated-schema-v1/
-e190868d63f8: Pull complete
-909cd34c6fd7: Pull complete
-0b9bfabab7c1: Pull complete
-a3ed95caeb02: Pull complete
-00bf65475aba: Pull complete
-c57b6bcc83e3: Pull complete
-8978f6879e2f: Pull complete
-8eed3712d2cf: Pull complete
-Digest: sha256:178598e51a26abbc958b8a2e48825c90bc22e641de3d31e18aaf55f3258ba93b
-Status: Downloaded newer image for docker/whalesay:latest</code></pre>
-<p>And this is the expected output:</p>
-<pre class="shell"><code>/ Welcome to the Setting Up a Dockerized \
-| R Development Environment with VScode  |
-\ Workshop! 👋🏼                     /
- ----------------------------------------
-    \
-     \
-      \
-                    ##        .
-              ## ## ##       ==
-           ## ## ## ##      ===
-       /""""""""""""""""___/ ===
-  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
-       \______ o          __/
-        \    \        __/
-          \____\______/</code></pre>
-<p>If you are able to run the <code>whalesay</code> app you are ready to get started with Docker.</p>
-</section>
-</section>
-<section id="installing-vscode" class="level2">
-<h2 class="anchored" data-anchor-id="installing-vscode">Installing VScode</h2>
-Installing VScode is straightforward - go to the VScode website <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a> and click on the Download button (purple rectangle on the screenshot):
+<p>Git provides a solution for versioning and monitoring code, ensuring that it can be reproduced correctly regardless of the user or machine it runs on, as long as it is used properly. Docker and similar solutions address the problem of environment mismatches by creating an isolated environment within a container that can be shipped along with the code to any remote machine, such as a desktop, laptop or server, allowing for seamless reproduction of the process.</p>
+<p>While developing software on different hardware architectures, such as Apple Silicon and Intel-based machines, there may be potential differences in the environment. Docker can partially address this issue by creating a dedicated image for each CPU architecture. However, this approach can be time-consuming and expensive since additional tests are required to ensure that all containers have the exact same characteristics.</p>
+<p>Figure 2 demonstrates a general workflow with Docker and Git. We use Git and Github/Gitlab/Bitbucket (or any similar service) to code version control. Docker is used to set up a containerized environment, which will be used for code development and testing. We then shift our code with the container to any remote environment that supports containers (i.e., Github Actions, AWS, GCP, etc.).</p>
+<p><br></p>
 <figure class="figure">
-<img src="images/vscode-download.png" width="100%" align="center" class="figure-img">
+<img src="images/reproducibility with Docker.png" width="100%" align="center" class="figure-img">
 <figcaption>
-Figure 2 - Visual Studio Code download page
-</figcaption>
-</figure>
-<p>Download the installation file and follow the instructions.</p>
-<section id="install-the-dev-containers-extension" class="level3">
-<h3 class="anchored" data-anchor-id="install-the-dev-containers-extension">Install the Dev Containers Extension</h3>
-<p>Last but not least, we will install the Dev Containers extension following the below steps:</p>
-<ul>
-<li>Click the Extensions button on the left menu (mark with a purple arrow on the screenshot below)</li>
-<li>Type the extension name - Dev Containers, on the search menu (see the yellow rectangular). You can see the search results below, and clicking on each extension will open a window with the extension details.</li>
-<li>Last but not least, Click the install button (see the green rectangular) to install the extension</li>
-</ul>
-<figure class="figure">
-<img src="images/vscode-extensions.png" width="100%" align="center" class="figure-img">
-<figcaption>
-Figure 3 - Steps to install extension on VScode
+Figure 2 - Shifting code between environments with version control and containers
 </figcaption>
 </figure>
 <p><br></p>
-<p><strong>Note:</strong> The Dev Containers extension is required to launch the dockerized environment. We will see later in this tutorial how to set and install the necessary extensions for your dockerized environment automatically with the <code>devcontainer.json</code> file.</p>
+<p>While this workflow provides a high level of reproducibility, it does not cover reproducibility issues you may encounter due to different hardware settings. There are different methods to address this issue, such as building a dedicated environment for each hardware architecture.</p>
+<p><strong>Note:</strong> Using a virtual environment is not an alternative to Docker. It actually works well together. While VE is not in the scope of this tutorial, you can read more about the differences between VE and Docker in the following <a href="https://medium.com/@rami.krispin/running-python-r-with-docker-vs-virtual-environment-4a62ed36900f">article</a>.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R/Medicine R VScode Workshop – Settings</title>
+<title>R/Medicine R VScode Workshop – Docker Pull</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./settings.html">Settings</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./docker-pull.html">Docker Pull</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -131,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./settings.html" class="sidebar-item-text sidebar-link active">
+  <a href="./settings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Settings</span></a>
   </div>
 </li>
@@ -147,35 +147,26 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">CLI Commands</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docker-pull.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Docker Pull</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#workshop-materials" id="toc-workshop-materials" class="nav-link active" data-scroll-target="#workshop-materials">Workshop Materials</a></li>
-  <li><a href="#setting-docker" id="toc-setting-docker" class="nav-link" data-scroll-target="#setting-docker">Setting Docker</a></li>
-  <li><a href="#docker-hub" id="toc-docker-hub" class="nav-link" data-scroll-target="#docker-hub">Docker Hub</a>
-  <ul class="collapse">
-  <li><a href="#hello-world" id="toc-hello-world" class="nav-link" data-scroll-target="#hello-world">Hello World!</a></li>
-  </ul></li>
-  <li><a href="#installing-vscode" id="toc-installing-vscode" class="nav-link" data-scroll-target="#installing-vscode">Installing VScode</a>
-  <ul class="collapse">
-  <li><a href="#install-the-dev-containers-extension" id="toc-install-the-dev-containers-extension" class="nav-link" data-scroll-target="#install-the-dev-containers-extension">Install the Dev Containers Extension</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Settings</h1>
+<h1 class="title">Docker Pull</h1>
 </div>
 
 
@@ -192,39 +183,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Throughout the workshop, we will use VScode and leverage Docker. To follow the workshop materials and run the code, you will need the following tools install and set:</p>
-<ul>
-<li>Docker Desktop (or equivalent)</li>
-<li>Docker Hub account</li>
-<li>VScode</li>
-<li>Dev Containers extension</li>
-</ul>
-<p>Please check the sections below for guidance on setting up the above requirements.</p>
-<section id="workshop-materials" class="level2">
-<h2 class="anchored" data-anchor-id="workshop-materials">Workshop Materials</h2>
-<p>All the workshop materials avaialble on the below repository:</p>
-<p><a href="https://github.com/RamiKrispin/R-Medicine-VScode-Workshop">https://github.com/RamiKrispin/R-Medicine-VScode-Workshop</a></p>
-<p>Please fork and clone to your local machine.</p>
-</section>
-<section id="setting-docker" class="level2">
-<h2 class="anchored" data-anchor-id="setting-docker">Setting Docker</h2>
-<p>Various ways exist to build and run Docker images on different operations systems. For the purpose of this guide, we will be utilizing Docker Desktop. It is a user-friendly container management interface that is compatible with MacOS, Windows, and Linux operating systems.</p>
-<p><strong>Note:</strong> Docker Desktop is free for personal use but requires a license for commercial use. For further information, please refer to https://www.docker.com/pricing/.</p>
-To install Docker Desktop, go to Docker website and follow the installation instructions according to your OS:
-<figure class="figure">
-<img src="images/docker-install.png" width="100%" align="center" class="figure-img">
-<figcaption>
-Figure 1 - Docker Desktop download page
-</figcaption>
-</figure>
-<p><br></p>
-</section>
-<section id="docker-hub" class="level2">
-<h2 class="anchored" data-anchor-id="docker-hub">Docker Hub</h2>
-<p>Container Registry has a similar functionality as Github for code, and it uses to store and share images. There are many container registries, and the most common is Docker Hub. We will use throughout the tutorial Docker Hub to pull different images, such as Python built-in images. To register and create an account go to https://hub.docker.com and follow the registration instructions.</p>
-<p>After installing Docker Desktop and setting account on Docker Hub, open Docker Desktop, and from the command line, login to Docker Hub:</p>
+<p>WIP</p>
+<p>The <code>docker pull</code> command, as the name implies, enables us to pull images from an image registery service to the local machine. Likewise, the <code>docker push</code> command enables to push images from the local machine to the image registery.</p>
+<p>Throughout the workshop, we will use <a href="https://hub.docker.com/">Docker Hub</a> to pull and push images. Before getting started, make sure that the Docker Desktop is open and login to your Docker Hub account using the <code>docker login</code> command:</p>
 <pre class="shell"><code> docker login</code></pre>
-<p>You will have to enter your username and password, and you should expect the following output if the login is successful:</p>
+<p>You will have to enter your Docker Hub username and password, and you should expect the following output if the login is successful:</p>
 <pre class="shell"><code>Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
 Username: rkrispin
 Password:
@@ -232,75 +195,129 @@ Login Succeeded
 
 Logging in with your password grants your terminal complete access to your account.
 For better security, log in with a limited-privilege personal access token. Learn more at https://docs.docker.com/go/access-tokens/</code></pre>
-<p><strong>Note:</strong> Docker Hub is completely public (for the free tier). Any image you push and store there will be available for all other users. Regardless if your container registry is public or not, <strong>NEVER</strong> store credentials, passwords, or any other sensitive information on your Docker images.</p>
-<section id="hello-world" class="level3">
-<h3 class="anchored" data-anchor-id="hello-world">Hello World!</h3>
-<p>There is no better way to test if Docker was installed properly than by running whalesay (or 🐳 say) Docker’s most <code>Hello World!</code> common example. The whalesay is an adaption of the Linux cowsay (🐮 say) game using a whale instead of a cow to print some text. Let’s run the below code from the terminal to print <code>Welcome to the Docker for Data Science Workshop! 👋🏼</code>:</p>
-<pre class="shell"><code>docker run docker/whalesay cowsay Welcome to the Setting Up a Dockerized R Development Environment with VScode Workshop! 👋🏼</code></pre>
-<p>If this is the first time you are using Docker or your first time using the <code>whalesay</code> image you should expect the following message:</p>
-<pre class="shell"><code>Unable to find image 'docker/whalesay:latest' locally</code></pre>
-<p>That is a generic message that notifies that the requested image cannot be found locally, and Docker will try to pull the image from the hub (if specified) and follow by downloading the image:</p>
-<pre class="shell"><code>latest: Pulling from docker/whalesay
-Image docker.io/docker/whalesay:latest uses outdated schema1 manifest format. Please upgrade to a schema2 image for better future compatibility. More information at https://docs.docker.com/registry/spec/deprecated-schema-v1/
-e190868d63f8: Pull complete
-909cd34c6fd7: Pull complete
-0b9bfabab7c1: Pull complete
-a3ed95caeb02: Pull complete
-00bf65475aba: Pull complete
-c57b6bcc83e3: Pull complete
-8978f6879e2f: Pull complete
-8eed3712d2cf: Pull complete
-Digest: sha256:178598e51a26abbc958b8a2e48825c90bc22e641de3d31e18aaf55f3258ba93b
-Status: Downloaded newer image for docker/whalesay:latest</code></pre>
-<p>And this is the expected output:</p>
-<pre class="shell"><code>/ Welcome to the Setting Up a Dockerized \
-| R Development Environment with VScode  |
-\ Workshop! 👋🏼                     /
- ----------------------------------------
-    \
-     \
-      \
-                    ##        .
-              ## ## ##       ==
-           ## ## ## ##      ===
-       /""""""""""""""""___/ ===
-  ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
-       \______ o          __/
-        \    \        __/
-          \____\______/</code></pre>
-<p>If you are able to run the <code>whalesay</code> app you are ready to get started with Docker.</p>
-</section>
-</section>
-<section id="installing-vscode" class="level2">
-<h2 class="anchored" data-anchor-id="installing-vscode">Installing VScode</h2>
-Installing VScode is straightforward - go to the VScode website <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a> and click on the Download button (purple rectangle on the screenshot):
-<figure class="figure">
-<img src="images/vscode-download.png" width="100%" align="center" class="figure-img">
-<figcaption>
-Figure 2 - Visual Studio Code download page
-</figcaption>
-</figure>
-<p>Download the installation file and follow the instructions.</p>
-<section id="install-the-dev-containers-extension" class="level3">
-<h3 class="anchored" data-anchor-id="install-the-dev-containers-extension">Install the Dev Containers Extension</h3>
-<p>Last but not least, we will install the Dev Containers extension following the below steps:</p>
-<ul>
-<li>Click the Extensions button on the left menu (mark with a purple arrow on the screenshot below)</li>
-<li>Type the extension name - Dev Containers, on the search menu (see the yellow rectangular). You can see the search results below, and clicking on each extension will open a window with the extension details.</li>
-<li>Last but not least, Click the install button (see the green rectangular) to install the extension</li>
-</ul>
-<figure class="figure">
-<img src="images/vscode-extensions.png" width="100%" align="center" class="figure-img">
-<figcaption>
-Figure 3 - Steps to install extension on VScode
-</figcaption>
-</figure>
-<p><br></p>
-<p><strong>Note:</strong> The Dev Containers extension is required to launch the dockerized environment. We will see later in this tutorial how to set and install the necessary extensions for your dockerized environment automatically with the <code>devcontainer.json</code> file.</p>
+<p>Next, let’s use the <code>docker pull</code> command to pull <code>r-base</code> image from the <a href="https://hub.docker.com/r/rocker/r-base">Rocker project</a>:</p>
+<pre class="shell"><code>docker pull rocker/r-base</code></pre>
+<p>By default, if image tag is not specify, it will pull the latest version, in this case tagged as <code>latest</code>:</p>
+<pre class="shell"><code>latest: Pulling from rocker/r-base
+dd55a40fdbce: Pull complete
+f5be2f3d564a: Pull complete
+871f8609f7aa: Pull complete
+4341d4d0ed70: Pull complete
+db1a17629c49: Pull complete
+1b6d85ef75d6: Pull complete
+Digest: sha256:76d5085d8f7f956d657fa8157119ee721e200768ebf4238e8eb7622963741a52
+Status: Downloaded newer image for rocker/r-base:latest
+docker.io/rocker/r-base:latest</code></pre>
+<p>You can notice from above log that Docker pulls the images by its layers. Each layer has a unique identifier and if it already exists in the local machine it will use. We can use the <code>docker images</code> command to review the image details:</p>
+<pre class="shell"><code>docker images</code></pre>
+<p>And you should expect the below output:</p>
+<pre class="shell"><code>REPOSITORY                                                                      TAG           IMAGE ID       CREATED        SIZE
+rocker/r-base                                                                   latest        b45bc6363d5c   6 weeks ago    900MB</code></pre>
+<p>To get a comprehensive details on the image you can use the <code>inspect</code> command:</p>
+<pre class="shell"><code>docker inspect rocker/r-base</code></pre>
+<p>The output includes a comprehensive metadata, such as the envornment variable, image layers and size, architecture type:</p>
+<pre class="shell"><code>[
+    {
+        "Id": "sha256:b45bc6363d5cb106d0eb8487b063d31fdfd69303930ef9197321761a325a759c",
+        "RepoTags": [
+            "rocker/r-base:latest"
+        ],
+        "RepoDigests": [
+            "rocker/r-base@sha256:76d5085d8f7f956d657fa8157119ee721e200768ebf4238e8eb7622963741a52"
+        ],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2024-04-24T12:34:24.227798748-05:00",
+        "Container": "",
+        "ContainerConfig": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": null,
+            "Cmd": null,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": null
+        },
+        "DockerVersion": "",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LC_ALL=en_US.UTF-8",
+                "LANG=en_US.UTF-8",
+                "R_BASE_VERSION=4.4.0"
+            ],
+            "Cmd": [
+                "R"
+            ],
+            "ArgsEscaped": true,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.authors": "Dirk Eddelbuettel &lt;edd@debian.org&gt;",
+                "org.opencontainers.image.licenses": "GPL-2.0-or-later",
+                "org.opencontainers.image.source": "https://github.com/rocker-org/rocker",
+                "org.opencontainers.image.vendor": "Rocker Project"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 899834336,
+        "VirtualSize": 899834336,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/8cc3007974934c112d67461ae50da63bd63100233c34cb09c94f4886d95a9d51/diff:/var/lib/docker/overlay2/6beb7739ac622c7420d0c5be0786f93e375415cbe4ec310deda1f500ef078f69/diff:/var/lib/docker/overlay2/13ccc1c83e6367b0422d6535f75044675d01846eabb92dc858d24714a14f40e0/diff:/var/lib/docker/overlay2/802733b21e8b4d2d6438066ca43305dfd77f81b0ca11722b2c1800aabc3c8b7f/diff:/var/lib/docker/overlay2/b254b8787a1e1d685b98905789cf8768b766ef3713ecff1c0256a7e0243b1eaa/diff",
+                "MergedDir": "/var/lib/docker/overlay2/dc75f5a9acdf97a2c3f1d0c48ca2fe17be9ade944a728bff41b3bd07d7beebdd/merged",
+                "UpperDir": "/var/lib/docker/overlay2/dc75f5a9acdf97a2c3f1d0c48ca2fe17be9ade944a728bff41b3bd07d7beebdd/diff",
+                "WorkDir": "/var/lib/docker/overlay2/dc75f5a9acdf97a2c3f1d0c48ca2fe17be9ade944a728bff41b3bd07d7beebdd/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:15825d671d3afd92546b589ed5c937299492a038da84eec0e6c0674fa594823e",
+                "sha256:58333b745bb8d03be4c9ff93a47e50f5569ab7925fd5036339f5b26c5cfd25bd",
+                "sha256:7868e7ea14cebd7f057115bed94ef907e325cd706ea585e5b9bc3ea42940514a",
+                "sha256:c2016d4ea8f014664f67c68736f1f7c6d098c49a92f18b7ed3e4f077f87bb367",
+                "sha256:45c736116a28d88a37d67b485683e43dc8ead81224d4505b9237d89398ff07d1",
+                "sha256:8911ae004132b1e2cb1e3bb1ee798c99a667fa8dfd2650aa6780982dfe5dbf1c"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "0001-01-01T00:00:00Z"
+        }
+    }
+]</code></pre>
+<p>One thing to notice, the <code>r-base</code> image has an execution command (i.e., <code>CMD</code>) to launch R:</p>
+<pre class="shell"><code>docker inspect rocker/r-base | jq '.[]| .Config.Cmd'
+[
+  "R"
+]</code></pre>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
