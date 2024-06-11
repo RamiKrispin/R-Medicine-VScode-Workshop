@@ -1,0 +1,84 @@
+---
+title: "Docker Mount"
+---
+
+This section focuses on mounting volumes to the container during the run time using the `volume` argument. Generally, the volume argument uses the following format:
+
+```shell
+docker run -v local_folder_path:destination_folder_path image_name:tag
+```
+
+Where the `-v` stands for volume followed by the local path and the destination path on the image, seperated by `:`. For example, let's mount from the repo the `scripts` folder to the container and run the `hello-world.R` file:
+
+
+```shell
+docker run --interactive --tty -v ~/Personal/tutorials/r-medicine-vscode-workshop/scripts/:/scripts rocker/r-base                                                                                                                                                                                           ok  1h 8m 0s
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+
+R version 4.4.0 (2024-04-24) -- "Puppy Cup"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> dir()
+ [1] "bin"     "boot"    "dev"     "etc"     "home"    "lib"     "lib64"
+ [8] "media"   "mnt"     "opt"     "proc"    "root"    "run"     "sbin"
+[15] "scripts" "srv"     "sys"     "tmp"     "usr"     "var"
+> source("scripts/hello-world.R")
+[1] "Hello World!"
+>
+
+```
+
+Once you set the volume, the local folder is mounted to the container and any change will be reflect on be reflected on container and vice versa.
+
+Likewise, you can mount many volumes follow the same method. For example, let's mount, in addition to the `scripts` folder the `data` folder:
+
+``` shell
+docker run --interactive --tty \                                                                                                                                                                         ok  33s
+ -v ~/Personal/tutorials/r-medicine-vscode-workshop/scripts/:/scripts \
+ -v ~/Personal/tutorials/r-medicine-vscode-workshop/data/:/data \
+ rocker/r-base
+```
+This will open the R session, and you can confirm with the `dir` command that the `data` and `csv` folders are mounted:
+
+```shell
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+
+R version 4.4.0 (2024-04-24) -- "Puppy Cup"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> dir()
+ [1] "bin"     "boot"    "data"    "dev"     "etc"     "home"    "lib"
+ [8] "lib64"   "media"   "mnt"     "opt"     "proc"    "root"    "run"
+[15] "sbin"    "scripts" "srv"     "sys"     "tmp"     "usr"     "var"
+>
+```

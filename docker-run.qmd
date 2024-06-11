@@ -47,8 +47,62 @@ Type 'q()' to quit R.
 >
 ```
 
+The image is now running inside a container. We can use the `docker ps` command to get a list of active containers:
 
+```shell
 docker ps
+```
 
-docker exec
+And you should expect the below output:
+
+``` shell
+CONTAINER ID   IMAGE                                                                           COMMAND                  CREATED          STATUS                  PORTS                                       NAMES
+8e4025e4b774   rocker/r-base                                                                   "R"                      14 seconds ago   Up 14 seconds                                                       peaceful_shaw
+
+```
+
+Docker by default, if the user does not set a name to the image it will assign a random name. In this case, it named the image as `peaceful_shaw`. In addition, it provides the container ID, which enables to reference the container when applying some commands.
+
+Another useful command is the `docker exec` which enables us to SSH to a running container. It is very useful command when you want to test or debug features on the image while running. We will use the container ID from the `docker ps` output and open a `bash` terminal:
+
+``` shell
+docker exec -it 8e4025e4b774 bash   
+```
+This will open a new terminal inside the container and enables us to access the container file system:
+
+``` shell
+root@8e4025e4b774:/#
+```
+
+For example, we can print the files and folders in the container root folder using the `ls` command:
+
+```shell
+root@8e4025e4b774:/# ls
+bin  boot  dev	etc  home  lib	lib64  media  mnt  opt	proc  root  run  sbin  srv  sys  tmp  usr  var
+```
+
+We can create a script and running it either from the open R terminal using the `source` command or directly from the SSH terminal
+
+``` shell
+root@8e4025e4b774:/# echo 'print("Hello World!")' > hello-world.R
+root@8e4025e4b774:/# Rscript 'hello-world.R'
+[1] "Hello World!"
+```
+
+We can stop the session by using the `quit()` command from the open R session:
+
+```shell
+> quit()
+Save workspace image? [y/n/c]: n
+```
+
+Alternativly, you can use the `docker kill` command, which will stop the run time of the container:
+
+```shell
+docker kill 8e4025e4b774
+```
+
+
+One of the issues of this workflow is that the container, by default, is running in ephemeral mode. In the next section, we will review how to mount a local folder to the container to make the code persistence.
+
 
