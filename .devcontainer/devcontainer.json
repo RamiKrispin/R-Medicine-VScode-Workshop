@@ -1,6 +1,6 @@
 {
     "name": "VScode R Workshop",
-    "image": "docker.io/rkrispin/r-dev:arm64.4.4.0",
+    "image": "docker.io/rkrispin/r-dev:amd64.4.4.0",
     // "build": {
     //     "dockerfile": "Dockerfile",
     //     "context": "."
@@ -29,5 +29,9 @@
     "runArgs": [
         "--env-file",
         ".devcontainer/devcontainer.env"
-    ]
+    ],
+    "remoteEnv": {
+        "MY_API_KEY": "${localEnv:MY_API_KEY}"
+    },
+    "postCreateCommand": "echo 'Hello World!'"
 }
