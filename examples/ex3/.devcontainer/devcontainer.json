@@ -1,0 +1,10 @@
+{
+    "name": "VScode R Workshop - Example 3",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "TAG": "4.4.0"
+        },
+        "context": "."
+    }
+}

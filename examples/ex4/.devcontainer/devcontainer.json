@@ -1,0 +1,31 @@
+{
+    "name": "VScode R Workshop - Example 4",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "TAG": "4.4.0"
+        },
+        "context": "."
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // R Extensions
+                "rdebugger.r-debugger",
+                "reditorsupport.r",
+                "posit.shiny",
+                // Documentation Extensions
+                "quarto.quarto",
+                "purocean.drawio-preview",
+                "redhat.vscode-yaml",
+                "yzhang.markdown-all-in-one",
+                // Docker Supporting Extensions
+                "ms-azuretools.vscode-docker",
+                "ms-vscode-remote.remote-containers",
+                // Python Extensions
+                "ms-python.python",
+                "ms-toolsai.jupyter"
+            ]
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "name": "VScode R Workshop - Example 1",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "."
+    }
+}
