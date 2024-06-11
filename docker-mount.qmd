@@ -48,7 +48,7 @@ Once you set the volume, the local folder is mounted to the container and any ch
 Likewise, you can mount many volumes follow the same method. For example, let's mount, in addition to the `scripts` folder the `data` folder:
 
 ``` shell
-docker run --interactive --tty \                                                                                                                                                                         ok  33s
+docker run --interactive --tty \
  -v ~/Personal/tutorials/r-medicine-vscode-workshop/scripts/:/scripts \
  -v ~/Personal/tutorials/r-medicine-vscode-workshop/data/:/data \
  rocker/r-base
