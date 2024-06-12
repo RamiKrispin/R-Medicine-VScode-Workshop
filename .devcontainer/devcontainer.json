@@ -31,7 +31,8 @@
         ".devcontainer/devcontainer.env"
     ],
     "remoteEnv": {
-        "MY_API_KEY": "${localEnv:MY_API_KEY}"
+        "MY_API_KEY": "${localEnv:MY_API_KEY}",
+        "MY_Second_VAR": "Some Var"
     },
     "postCreateCommand": "echo 'Hello World!'"
 }
