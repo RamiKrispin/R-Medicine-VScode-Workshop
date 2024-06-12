@@ -1,4 +1,4 @@
 {
     "name": "VScode R Workshop - Example 1",
-    "image": "ubuntu:22.04"
+    "image": "rocker/r-base"
 }

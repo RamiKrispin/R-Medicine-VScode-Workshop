@@ -1,5 +1,5 @@
 ---
-title: "Using Environment Variable"
+title: "Using Environment Variables"
 ---
 WIP
 

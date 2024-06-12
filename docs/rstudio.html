@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R/Medicine R VScode Workshop – Introduction to Docker</title>
+<title>R/Medicine R VScode Workshop – Launching RStudio Inside A Container</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./docker-intro.html">Introduction to Docker</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rstudio.html">Launching RStudio Inside A Container</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -137,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker-intro.html" class="sidebar-item-text sidebar-link active">
+  <a href="./docker-intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Docker</span></a>
   </div>
 </li>
@@ -173,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rstudio.html" class="sidebar-item-text sidebar-link">
+  <a href="./rstudio.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Launching RStudio Inside A Container</span></a>
   </div>
 </li>
@@ -182,22 +182,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#what-is-docker" id="toc-what-is-docker" class="nav-link active" data-scroll-target="#what-is-docker">What is Docker?</a></li>
-  <li><a href="#docker-for-data-science" id="toc-docker-for-data-science" class="nav-link" data-scroll-target="#docker-for-data-science">Docker for Data Science</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction to Docker</h1>
+<h1 class="title">Launching RStudio Inside A Container</h1>
 </div>
 
 
@@ -214,55 +207,180 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In my data science career, one major technical milestone (after learning how to code and adopt Git) was learning Docker and starting to use it. It opened a new world of opportunities, from automating processes to deploying data science work in production. This section defines what Docker is and the data science applications and use cases.</p>
-<section id="what-is-docker" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-docker">What is Docker?</h2>
-<p>Docker is a CI/CD tool that enables seamless code deployment from development to production environments. By creating OS-level virtualization, it can package an application and its dependencies in a virtual container and ship it between different environments. The main advantages of using Docker within your development environment are:</p>
-<ul>
-<li><strong>Reproducibility -</strong> Docker enables you to seamlessly package your code and its dependencies into a single container and execute, test, share, and deploy it with a high level of consistency</li>
-<li><strong>Collaboration -</strong> Docker solves the dependencies madness when a team of developers works together on a specific project. Having a unified environment saves a ton of time during the development step. For example, if one developer gets some error, it is easy for other developers to reproduce the error and help debug it</li>
-<li><strong>Deployment -</strong> Docker simplifies the code shipment from the development environment to the production</li>
-</ul>
-</section>
-<section id="docker-for-data-science" class="level2">
-<h2 class="anchored" data-anchor-id="docker-for-data-science">Docker for Data Science</h2>
-<p>Docker was built to solve a common DevOps problem - the lack of reproducibility when shifting code between different environments (e.g., dev to prod). <strong>Reproducibility</strong> is not limited to DevOps, and it plays a critical role in the field of data science. We can define reproducibility as the ability to generate the <strong>exact outcome</strong> when running the same code <strong>regardless of the user or machine</strong> on which the code is running.</p>
-<p>The first time I heard the term reproducibility was during my bachelor’s degree, where I learned that reproducibility starts and ends by setting a <strong>seed</strong> number to lock down random numbers. My favorite seed number is 12345. When I started to work as a data scientist, I realized that reproducibility goes beyond setting a seed number. Here are the main elements that can impact code reproducibility:</p>
-<ul>
-<li><strong>Version control —</strong> First and foremost, reproducing the same results starts with the ability to track changes in your code Randomization — Controlling the random generation of numbers by setting the seed number</li>
-<li><strong>Software version —</strong> The versions of your Python or R (or any other programming language) and its dependencies (e.g., libraries) impact the outcome of your code. For example, code that was built with pandas v1.0 may not run on v2.0 due to deprecation of functions</li>
-<li><strong>Operating System (OS) —</strong> Most programming languages, particularly R and Python, use different compilers (e.g., C, C++, etc.) and other built-in OS components. The type of OS and its version could impact the outcome of your code</li>
-<li><strong>Hardware —</strong> Last but not, the type of hardware (or infrastructure) could impact your results (ARM/Intel/Apple processor, etc)</li>
-</ul>
-<p>In a regular data science workflow, reproducibility is dependent on several factors. One of the most basic and trivial elements of reproducibility is <strong>code versioning</strong>. Using unversioned code makes it impossible to track changes in your code or verify that the same code runs on different environments.</p>
-<p>Another critical factor is <strong>package versioning</strong>. Over time, packages and their dependencies tend to change and evolve, get new features, bug fixes, replace and deprecate old functions. In some cases, running your code using a specific package version may not work or yield the same results as older or newer versions of the package. For example, code written with Pandas 1.x may not work with Pandas 2.x, and vice versa.</p>
-<p>Similarly, <strong>programming languages</strong> tend to change over time, and using code built with older versions may not work or be supported with recent ones. Moreover, different operating systems use different software architectures or run different types of compilers (c, c++, etc.) on the backend. This difference may impact the reproducibility of your code.</p>
-<p>Lastly, the type of <strong>CPU architecture</strong> (ARM, Intel, Apple Silocon, etc.) may impact the underlying software. Some packages or software may require a separate build or may not be supported, which can ultimately affect the reproducibility of your code.</p>
-<p>Below is Figure 1, which illustrates the factors affecting code reproducibility when transferring between different environments.</p>
-<p><br></p>
-<figure class="figure">
-<img src="images/reproducibility without Docker.png" width="100%" align="center" class="figure-img">
-<figcaption>
-Figure 1 - Shifting code between environments, what could go wrong?
-</figcaption>
-</figure>
-<p><br></p>
-<p>Git provides a solution for versioning and monitoring code, ensuring that it can be reproduced correctly regardless of the user or machine it runs on, as long as it is used properly. Docker and similar solutions address the problem of environment mismatches by creating an isolated environment within a container that can be shipped along with the code to any remote machine, such as a desktop, laptop or server, allowing for seamless reproduction of the process.</p>
-<p>While developing software on different hardware architectures, such as Apple Silicon and Intel-based machines, there may be potential differences in the environment. Docker can partially address this issue by creating a dedicated image for each CPU architecture. However, this approach can be time-consuming and expensive since additional tests are required to ensure that all containers have the exact same characteristics.</p>
-<p>Figure 2 demonstrates a general workflow with Docker and Git. We use Git and Github/Gitlab/Bitbucket (or any similar service) to code version control. Docker is used to set up a containerized environment, which will be used for code development and testing. We then shift our code with the container to any remote environment that supports containers (i.e., Github Actions, AWS, GCP, etc.).</p>
-<p><br></p>
-<figure class="figure">
-<img src="images/reproducibility with Docker.png" width="100%" align="center" class="figure-img">
-<figcaption>
-Figure 2 - Shifting code between environments with version control and containers
-</figcaption>
-</figure>
-<p><br></p>
-<p>While this workflow provides a high level of reproducibility, it does not cover reproducibility issues you may encounter due to different hardware settings. There are different methods to address this issue, such as building a dedicated environment for each hardware architecture.</p>
-<p><strong>Note:</strong> Using a virtual environment is not an alternative to Docker. It actually works well together. While VE is not in the scope of this tutorial, you can read more about the differences between VE and Docker in the following <a href="https://medium.com/@rami.krispin/running-python-r-with-docker-vs-virtual-environment-4a62ed36900f">article</a>.</p>
+<p>WIP</p>
+<p>In this section, we will see how to launch an RStudio server inside a container using the <a href="https://hub.docker.com/r/rocker/rstudio/tags">Rocker RStudio image</a>.</p>
+<p>Let’s start by pulling the <code>rocker/rstudio</code> image. The image has multiple R version and it supports both amd64 and arm64 architecture. We will pull version 4.4 (e.g., R version 4.4.0):</p>
+<pre class="shell"><code>docker pull rocker/rstudio:4.4
+
+4.4: Pulling from rocker/rstudio
+d5a2ad729c09: Pull complete
+52afab1e5214: Pull complete
+5470254b6bce: Pull complete
+31448a39ca0b: Pull complete
+d9b801de7b4a: Pull complete
+01e5afb0e5ba: Pull complete
+c12b8fa2b210: Pull complete
+f736bdfdf98f: Pull complete
+d43202eea89b: Pull complete
+f75471090da0: Pull complete
+613fe7476aa4: Pull complete
+6131f5b93b09: Pull complete
+7e2b0e33d0a7: Pull complete
+9ebea9c66865: Pull complete
+575f3bda6605: Pull complete
+7965aff29d23: Pull complete
+a1699199f205: Pull complete
+4fa5ea4f10eb: Pull complete
+Digest: sha256:b0aab99fef930d2e3ac49eba807bf162bd3887a20f63a99a8e9ce3c8daa82aae
+Status: Downloaded newer image for rocker/rstudio:4.4
+docker.io/rocker/rstudio:4.4
+</code></pre>
+<p>Let’s inspect the image using the <code>docker inspect</code> command:</p>
+<pre class="shell"><code>docker inspect rocker/rstudio:4.4
+
+[
+    {
+        "Id": "sha256:becb6182a46d22f7088c703dab581948b0748c7a78667b0bac70be37187f8c66",
+        "RepoTags": [
+            "rocker/rstudio:4.4"
+        ],
+        "RepoDigests": [
+            "rocker/rstudio@sha256:b0aab99fef930d2e3ac49eba807bf162bd3887a20f63a99a8e9ce3c8daa82aae"
+        ],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2024-05-13T10:18:35.446606479Z",
+        "Container": "",
+        "ContainerConfig": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": null,
+            "Cmd": null,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": null
+        },
+        "DockerVersion": "",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "8787/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "R_VERSION=4.4.0",
+                "R_HOME=/usr/local/lib/R",
+                "TZ=Etc/UTC",
+                "CRAN=https://p3m.dev/cran/__linux__/jammy/latest",
+                "LANG=en_US.UTF-8",
+                "S6_VERSION=v2.1.0.2",
+                "RSTUDIO_VERSION=2024.04.1+748",
+                "DEFAULT_USER=rstudio"
+            ],
+            "Cmd": [
+                "/init"
+            ],
+            "ArgsEscaped": true,
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.authors": "Carl Boettiger &lt;cboettig@ropensci.org&gt;",
+                "org.opencontainers.image.base.name": "docker.io/library/ubuntu:jammy",
+                "org.opencontainers.image.description": "RStudio Server with fixed version of R",
+                "org.opencontainers.image.licenses": "GPL-2.0-or-later",
+                "org.opencontainers.image.ref.name": "ubuntu",
+                "org.opencontainers.image.revision": "dfa8e3d174f6bb7aaa1f9a8a7b471bdd6ef50366",
+                "org.opencontainers.image.source": "https://github.com/rocker-org/rocker-versioned2",
+                "org.opencontainers.image.title": "rocker/rstudio",
+                "org.opencontainers.image.vendor": "Rocker Project",
+                "org.opencontainers.image.version": "R-4.4.0"
+            }
+        },
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Size": 2172808764,
+        "VirtualSize": 2172808764,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/3729e6d9a3561c260fe454f4838f955d01f813b5eba2cae18e33da2671ca08e8/diff:/var/lib/docker/overlay2/d796c8cd0d3515c1b4f5973d3fc6595efd4841e31cdd4b9de01ab1ea5e952dc9/diff:/var/lib/docker/overlay2/fb601679c363675abb5a4db1dda3dd7d2db5bbf647812f19cb15527e82ddc7a1/diff:/var/lib/docker/overlay2/fba04399d1d6602d370cb888711a86cd673c8f5ab5bf591ec3b1ba20a5f6900d/diff:/var/lib/docker/overlay2/d91fb5888c1bcdf14e4c13980003a971694d96b0c8a4fdffc82865d83f1ca75e/diff:/var/lib/docker/overlay2/a058ada97238094f1d2ccdb362092fadd2f3d565040f1f19e786b92151c7fc34/diff:/var/lib/docker/overlay2/dbc40b2675396cf40a90f2423e561b2f009425c8b14309306a71b8e2366619e2/diff:/var/lib/docker/overlay2/96af8f52d1bacfa8dbff29e00069b2de8f97152de30efaa8c8ff6a73c9574f38/diff:/var/lib/docker/overlay2/90d65f022c6dac58c2e92da93a1842ccc54b7ae86483dc1eac84757ba9756af5/diff:/var/lib/docker/overlay2/2d170fc585e0a11b641479d5bb30c22d8fc06dc985371afa49d426c4ed1ae51e/diff:/var/lib/docker/overlay2/ea5019d71c56a137499ddd6e42cdb7f799ecf31b4559f802b947a51ca7168709/diff:/var/lib/docker/overlay2/282837f9b3df6c4f7f73f7ae593fd6248c212d551892a018c3ff4ec5e43da753/diff:/var/lib/docker/overlay2/1473d9373d0fb6c7ea4261324931190b4d7456e2a4382f30e874c930f7ada22b/diff:/var/lib/docker/overlay2/db0570895f19f40b48af680438e29315b8ca3db510e9bbc36a01076c5d88a189/diff:/var/lib/docker/overlay2/8b192d70a5882f9bf134f52edc4492959f24ca372222481f147db9f5cde4258d/diff:/var/lib/docker/overlay2/020b81a886e5b4f955ba735c1ceec2e64fb2adb6e8094c99e7b2091607187988/diff:/var/lib/docker/overlay2/e67158f4615da29fa5aa82d49fec7f20b9cca47faf79f1171271a89aaa0ad52b/diff",
+                "MergedDir": "/var/lib/docker/overlay2/798e3379deda1c96016acffb4f157d346b903bae02c2d9a62c731aa4ab2f5d85/merged",
+                "UpperDir": "/var/lib/docker/overlay2/798e3379deda1c96016acffb4f157d346b903bae02c2d9a62c731aa4ab2f5d85/diff",
+                "WorkDir": "/var/lib/docker/overlay2/798e3379deda1c96016acffb4f157d346b903bae02c2d9a62c731aa4ab2f5d85/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:842bef16b8fb80459504b4621523ac3d78faf7e01d6d9fa7076ed6d4a8f49830",
+                "sha256:2c68b352337ae04a9f7fce80007c19e3f2c874eadffc85199955cfcf44d9061c",
+                "sha256:0fad67fdf921f7ed4f040284f6146e8375715129cd4d15bb36b9235242360b10",
+                "sha256:2ef96c4a0e68a2c895ff11cf39f69113ceb277044912459a5e0cc24e7d21b790",
+                "sha256:f8b9f8602a972d98720bd99f4f51c8379b6b845516214956d7d4d453dc39e683",
+                "sha256:2fc954a61b038a031d1d0c5162274d55136b031c5ba8df8b1d6c4ab7ae20bccf",
+                "sha256:6ca11d07fecd4bfe9b164c2314d828a3c9fda533735310a3085d22feed7ed9a6",
+                "sha256:5b805848d8250ae9142acdec752e1e52ea94770dd36f3a9b54be0535d0a76cb0",
+                "sha256:396ebfd3b2cc4e126316d78ed6370bca9a665c075d213926b8c5a3cd4d05cf87",
+                "sha256:0ebe277907d2119217f2716a80f22584ce0263337b565159144840ef8b4db697",
+                "sha256:0b4b2142410dd85ad91bc0a3001d70ce6a4554b4b50b9cb8becba2d50a7f2e81",
+                "sha256:c140f6799583e787451c39b0039c03adff38330a6073adf1aa813b80473266d8",
+                "sha256:b800b064a0971dac8abe17ed5a5b7e0239992220e2e7b87e44b42216f4027200",
+                "sha256:3a6a4a046836fb006775ccc4feaf98bfd0cb6144ccf13f7aa21477f0894231b2",
+                "sha256:696cb3ec82e9bf48c9885319b349334e586ab82d7f1d5661bc6e96d46471d2fb",
+                "sha256:a2349bfceca1a0b3f483e7818dbb188494ec7e6125e17bb66fdc3e057c6553ae",
+                "sha256:19d70fd56e6657c042bbb86375cd13e6f5d3f14a3d032065200464319f524739",
+                "sha256:07fa9e3dc45416e6f0cdf715aaed0e1f3a090d4c312449603762ce7fd4dc5e5a"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "0001-01-01T00:00:00Z"
+        }
+    }
+]</code></pre>
+<p>If you thing to notice, the image expose a port <code>8787</code> during the run time of the container and we will use to map the container to the browser:</p>
+<pre class="shell"><code>docker inspect rocker/rstudio:4.4 | jq '.[]| .Config.ExposedPorts'
+
+{
+  "8787/tcp": {}
+}</code></pre>
+<p>We will use the <code>port</code> argument (or <code>-p</code>) to expose the container port to the local port:</p>
+<pre class="shell"><code>docker run --rm -ti \
+ -v ~/Personal/tutorials/r-medicine-vscode-workshop/scripts/:/home/rstudio/scripts \
+ -v ~/Personal/tutorials/r-medicine-vscode-workshop/data/:/home/rstudio/data \
+-e PASSWORD=yourpassword \
+-p 8787:8787 rocker/rstudio:4.4</code></pre>
+<p><strong>Note:</strong> The port mapping logic of the <code>port</code> argument use the following logic - <code>local_port:container_port</code>.</p>
+<p>We can pair the local RStudio config with the ones on the container by mounting the RStudio config’s folder:</p>
+<pre class="shell"><code>docker run --rm -ti \
+-v ~/Personal/tutorials/r-medicine-vscode-workshop/scripts/:/home/rstudio/scripts \
+-v ~/Personal/tutorials/r-medicine-vscode-workshop/data/:/home/rstudio/data \
+-v ~/.config/rstudio/:/home/rstudio/.config/rstudio \
+-e PASSWORD=yourpassword \
+-p 8787:8787 rocker/rstudio:4.4</code></pre>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

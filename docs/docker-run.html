@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R/Medicine R VScode Workshop – Introduction to Docker</title>
+<title>R/Medicine R VScode Workshop – Docker Run</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./docker-intro.html">Introduction to Docker</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./docker-run.html">Docker Run</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -137,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker-intro.html" class="sidebar-item-text sidebar-link active">
+  <a href="./docker-intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Docker</span></a>
   </div>
 </li>
@@ -155,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker-run.html" class="sidebar-item-text sidebar-link">
+  <a href="./docker-run.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Docker Run</span></a>
   </div>
 </li>
@@ -182,22 +182,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#what-is-docker" id="toc-what-is-docker" class="nav-link active" data-scroll-target="#what-is-docker">What is Docker?</a></li>
-  <li><a href="#docker-for-data-science" id="toc-docker-for-data-science" class="nav-link" data-scroll-target="#docker-for-data-science">Docker for Data Science</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction to Docker</h1>
+<h1 class="title">Docker Run</h1>
 </div>
 
 
@@ -214,55 +207,62 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In my data science career, one major technical milestone (after learning how to code and adopt Git) was learning Docker and starting to use it. It opened a new world of opportunities, from automating processes to deploying data science work in production. This section defines what Docker is and the data science applications and use cases.</p>
-<section id="what-is-docker" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-docker">What is Docker?</h2>
-<p>Docker is a CI/CD tool that enables seamless code deployment from development to production environments. By creating OS-level virtualization, it can package an application and its dependencies in a virtual container and ship it between different environments. The main advantages of using Docker within your development environment are:</p>
-<ul>
-<li><strong>Reproducibility -</strong> Docker enables you to seamlessly package your code and its dependencies into a single container and execute, test, share, and deploy it with a high level of consistency</li>
-<li><strong>Collaboration -</strong> Docker solves the dependencies madness when a team of developers works together on a specific project. Having a unified environment saves a ton of time during the development step. For example, if one developer gets some error, it is easy for other developers to reproduce the error and help debug it</li>
-<li><strong>Deployment -</strong> Docker simplifies the code shipment from the development environment to the production</li>
-</ul>
-</section>
-<section id="docker-for-data-science" class="level2">
-<h2 class="anchored" data-anchor-id="docker-for-data-science">Docker for Data Science</h2>
-<p>Docker was built to solve a common DevOps problem - the lack of reproducibility when shifting code between different environments (e.g., dev to prod). <strong>Reproducibility</strong> is not limited to DevOps, and it plays a critical role in the field of data science. We can define reproducibility as the ability to generate the <strong>exact outcome</strong> when running the same code <strong>regardless of the user or machine</strong> on which the code is running.</p>
-<p>The first time I heard the term reproducibility was during my bachelor’s degree, where I learned that reproducibility starts and ends by setting a <strong>seed</strong> number to lock down random numbers. My favorite seed number is 12345. When I started to work as a data scientist, I realized that reproducibility goes beyond setting a seed number. Here are the main elements that can impact code reproducibility:</p>
-<ul>
-<li><strong>Version control —</strong> First and foremost, reproducing the same results starts with the ability to track changes in your code Randomization — Controlling the random generation of numbers by setting the seed number</li>
-<li><strong>Software version —</strong> The versions of your Python or R (or any other programming language) and its dependencies (e.g., libraries) impact the outcome of your code. For example, code that was built with pandas v1.0 may not run on v2.0 due to deprecation of functions</li>
-<li><strong>Operating System (OS) —</strong> Most programming languages, particularly R and Python, use different compilers (e.g., C, C++, etc.) and other built-in OS components. The type of OS and its version could impact the outcome of your code</li>
-<li><strong>Hardware —</strong> Last but not, the type of hardware (or infrastructure) could impact your results (ARM/Intel/Apple processor, etc)</li>
-</ul>
-<p>In a regular data science workflow, reproducibility is dependent on several factors. One of the most basic and trivial elements of reproducibility is <strong>code versioning</strong>. Using unversioned code makes it impossible to track changes in your code or verify that the same code runs on different environments.</p>
-<p>Another critical factor is <strong>package versioning</strong>. Over time, packages and their dependencies tend to change and evolve, get new features, bug fixes, replace and deprecate old functions. In some cases, running your code using a specific package version may not work or yield the same results as older or newer versions of the package. For example, code written with Pandas 1.x may not work with Pandas 2.x, and vice versa.</p>
-<p>Similarly, <strong>programming languages</strong> tend to change over time, and using code built with older versions may not work or be supported with recent ones. Moreover, different operating systems use different software architectures or run different types of compilers (c, c++, etc.) on the backend. This difference may impact the reproducibility of your code.</p>
-<p>Lastly, the type of <strong>CPU architecture</strong> (ARM, Intel, Apple Silocon, etc.) may impact the underlying software. Some packages or software may require a separate build or may not be supported, which can ultimately affect the reproducibility of your code.</p>
-<p>Below is Figure 1, which illustrates the factors affecting code reproducibility when transferring between different environments.</p>
-<p><br></p>
-<figure class="figure">
-<img src="images/reproducibility without Docker.png" width="100%" align="center" class="figure-img">
-<figcaption>
-Figure 1 - Shifting code between environments, what could go wrong?
-</figcaption>
-</figure>
-<p><br></p>
-<p>Git provides a solution for versioning and monitoring code, ensuring that it can be reproduced correctly regardless of the user or machine it runs on, as long as it is used properly. Docker and similar solutions address the problem of environment mismatches by creating an isolated environment within a container that can be shipped along with the code to any remote machine, such as a desktop, laptop or server, allowing for seamless reproduction of the process.</p>
-<p>While developing software on different hardware architectures, such as Apple Silicon and Intel-based machines, there may be potential differences in the environment. Docker can partially address this issue by creating a dedicated image for each CPU architecture. However, this approach can be time-consuming and expensive since additional tests are required to ensure that all containers have the exact same characteristics.</p>
-<p>Figure 2 demonstrates a general workflow with Docker and Git. We use Git and Github/Gitlab/Bitbucket (or any similar service) to code version control. Docker is used to set up a containerized environment, which will be used for code development and testing. We then shift our code with the container to any remote environment that supports containers (i.e., Github Actions, AWS, GCP, etc.).</p>
-<p><br></p>
-<figure class="figure">
-<img src="images/reproducibility with Docker.png" width="100%" align="center" class="figure-img">
-<figcaption>
-Figure 2 - Shifting code between environments with version control and containers
-</figcaption>
-</figure>
-<p><br></p>
-<p>While this workflow provides a high level of reproducibility, it does not cover reproducibility issues you may encounter due to different hardware settings. There are different methods to address this issue, such as building a dedicated environment for each hardware architecture.</p>
-<p><strong>Note:</strong> Using a virtual environment is not an alternative to Docker. It actually works well together. While VE is not in the scope of this tutorial, you can read more about the differences between VE and Docker in the following <a href="https://medium.com/@rami.krispin/running-python-r-with-docker-vs-virtual-environment-4a62ed36900f">article</a>.</p>
+<p>WIP</p>
+<p>In this section, we will review the <code>docker run</code> command. The <code>docker run</code> command enables us to spin an image into a container. Let’s use the <code>run</code> command to launch the <code>r-base</code> image we pulled in the previous section inside a container:</p>
+<pre class="shell"><code>docker run rocker/r-base</code></pre>
+<p>This will results in the below warning and error:</p>
+<pre class="shell"><code>WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+Fatal error: you must specify '--save', '--no-save' or '--vanilla'</code></pre>
+<p>The main reason for getting this error is releated to the execution type of the container which is not aligned with CMD command. To solve this issue we will run the container in an interactive mode using the <code>--interactive --tty</code> arguments:</p>
+<pre class="shell"><code>docker run --interactive --tty rocker/r-base</code></pre>
+<p>This will open R session inside a container:</p>
+<pre class="shell"><code>WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+
+R version 4.4.0 (2024-04-24) -- "Puppy Cup"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+&gt;</code></pre>
+<p>The image is now running inside a container. We can use the <code>docker ps</code> command to get a list of active containers:</p>
+<pre class="shell"><code>docker ps</code></pre>
+<p>And you should expect the below output:</p>
+<pre class="shell"><code>CONTAINER ID   IMAGE                                                                           COMMAND                  CREATED          STATUS                  PORTS                                       NAMES
+8e4025e4b774   rocker/r-base                                                                   "R"                      14 seconds ago   Up 14 seconds                                                       peaceful_shaw
+</code></pre>
+<p>Docker by default, if the user does not set a name to the image it will assign a random name. In this case, it named the image as <code>peaceful_shaw</code>. In addition, it provides the container ID, which enables to reference the container when applying some commands.</p>
+<p>Another useful command is the <code>docker exec</code> which enables us to SSH to a running container. It is very useful command when you want to test or debug features on the image while running. We will use the container ID from the <code>docker ps</code> output and open a <code>bash</code> terminal:</p>
+<pre class="shell"><code>docker exec -it 8e4025e4b774 bash   </code></pre>
+<p>This will open a new terminal inside the container and enables us to access the container file system:</p>
+<pre class="shell"><code>root@8e4025e4b774:/#</code></pre>
+<p>For example, we can print the files and folders in the container root folder using the <code>ls</code> command:</p>
+<pre class="shell"><code>root@8e4025e4b774:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre>
+<p>We can create a script and running it either from the open R terminal using the <code>source</code> command or directly from the SSH terminal</p>
+<pre class="shell"><code>root@8e4025e4b774:/# echo 'print("Hello World!")' &gt; hello-world.R
+root@8e4025e4b774:/# Rscript 'hello-world.R'
+[1] "Hello World!"</code></pre>
+<p>We can stop the session by using the <code>quit()</code> command from the open R session:</p>
+<pre class="shell"><code>&gt; quit()
+Save workspace image? [y/n/c]: n</code></pre>
+<p>Alternativly, you can use the <code>docker kill</code> command, which will stop the run time of the container:</p>
+<pre class="shell"><code>docker kill 8e4025e4b774</code></pre>
+<p>One of the issues of this workflow is that the container, by default, is running in ephemeral mode. In the next section, we will review how to mount a local folder to the container to make the code persistence.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
