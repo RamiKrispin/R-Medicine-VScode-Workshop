@@ -10,8 +10,8 @@ project:
     - docker-pull.qmd
     - docker-run.qmd
     - docker-mount.qmd
-    - docker-args.qmd
-    - rstudio.qmd
+    - docker-env.qmd
+    - docker-rstudio.qmd
 
 website:
   title: "R/Medicine R VScode Workshop"
@@ -30,13 +30,14 @@ website:
       - docker-pull.qmd
       - docker-run.qmd
       - docker-mount.qmd
-      - docker-args.qmd
-      - rstudio.qmd
+      - docker-env.qmd
+      - docker-rstudio.qmd
 
 format:
   html:
-    theme: default
-    css: styles.css
+    theme:
+      light: pandoc
+      dark: darkly
     toc: true
 
 

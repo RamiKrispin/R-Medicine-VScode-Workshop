@@ -1,9 +1,8 @@
 ---
 title: "Using Environment Variables"
 ---
-WIP
 
-This section focuses on setting environment variables during the run time of the image.
+This section focuses on setting environment variables during the image's run time.
 
 Environment variable are a great tool to make your code dynamic and flexiable. Setting environment variable during the run time enables to pass useful information to the container, such as passwords and credentials or any other information. For example, let's add to the `r-base` image an environment variable named `MY_VAR` with the value of `MY_VALUE`:
 

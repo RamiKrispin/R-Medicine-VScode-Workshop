@@ -8,7 +8,7 @@ This section focuses on mounting volumes to the container during the run time us
 docker run -v local_folder_path:destination_folder_path image_name:tag
 ```
 
-Where the `-v` stands for volume followed by the local path and the destination path on the image, seperated by `:`. For example, let's mount from the repo the `scripts` folder to the container and run the `hello-world.R` file:
+Where the `-v` stands for volume followed by the local path and the destination path on the image, separated by `:`. For example, let's mount from the repo the `scripts` folder to the container and run the `hello-world.R` file:
 
 
 ```shell
@@ -45,7 +45,8 @@ Type 'q()' to quit R.
 
 Once you set the volume, the local folder is mounted to the container and any change will be reflect on be reflected on container and vice versa.
 
-Likewise, you can mount many volumes follow the same method. For example, let's mount, in addition to the `scripts` folder the `data` folder:
+Likewise, you can mount many volumes following the same method. For example, let’s mount, in addition to the `scripts` folder, the `data` folder:
+
 
 ``` shell
 docker run --interactive --tty \

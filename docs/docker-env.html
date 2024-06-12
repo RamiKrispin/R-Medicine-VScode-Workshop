@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R/Medicine R VScode Workshop – Launching RStudio Inside A Container</title>
+<title>R/Medicine R VScode Workshop – Using Environment Variables</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -35,10 +35,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +70,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -95,6 +96,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -103,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rstudio.html">Launching RStudio Inside A Container</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./docker-env.html">Using Environment Variables</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,13 +169,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker-args.html" class="sidebar-item-text sidebar-link">
+  <a href="./docker-env.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Using Environment Variables</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rstudio.html" class="sidebar-item-text sidebar-link active">
+  <a href="./docker-rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Launching RStudio Inside A Container</span></a>
   </div>
 </li>
@@ -190,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Launching RStudio Inside A Container</h1>
+<h1 class="title">Using Environment Variables</h1>
 </div>
 
 
@@ -207,178 +209,37 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>WIP</p>
-<p>In this section, we will see how to launch an RStudio server inside a container using the <a href="https://hub.docker.com/r/rocker/rstudio/tags">Rocker RStudio image</a>.</p>
-<p>Let’s start by pulling the <code>rocker/rstudio</code> image. The image has multiple R version and it supports both amd64 and arm64 architecture. We will pull version 4.4 (e.g., R version 4.4.0):</p>
-<pre class="shell"><code>docker pull rocker/rstudio:4.4
+<p>This section focuses on setting environment variables during the image’s run time.</p>
+<p>Environment variable are a great tool to make your code dynamic and flexiable. Setting environment variable during the run time enables to pass useful information to the container, such as passwords and credentials or any other information. For example, let’s add to the <code>r-base</code> image an environment variable named <code>MY_VAR</code> with the value of <code>MY_VALUE</code>:</p>
+<pre class="shell"><code>docker run --interactive --tty \
+ -e MY_VAR="MY_VALUE" \
+ -v ~/Personal/tutorials/r-medicine-vscode-workshop/scripts/:/scripts \
+ -v ~/Personal/tutorials/r-medicine-vscode-workshop/data/:/data \
+ rocker/r-base</code></pre>
+<p>As before, this will open an R session, and we can use the <code>Sys.getenv</code> function to print the variable value:</p>
+<pre class="shell"><code> WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
 
-4.4: Pulling from rocker/rstudio
-d5a2ad729c09: Pull complete
-52afab1e5214: Pull complete
-5470254b6bce: Pull complete
-31448a39ca0b: Pull complete
-d9b801de7b4a: Pull complete
-01e5afb0e5ba: Pull complete
-c12b8fa2b210: Pull complete
-f736bdfdf98f: Pull complete
-d43202eea89b: Pull complete
-f75471090da0: Pull complete
-613fe7476aa4: Pull complete
-6131f5b93b09: Pull complete
-7e2b0e33d0a7: Pull complete
-9ebea9c66865: Pull complete
-575f3bda6605: Pull complete
-7965aff29d23: Pull complete
-a1699199f205: Pull complete
-4fa5ea4f10eb: Pull complete
-Digest: sha256:b0aab99fef930d2e3ac49eba807bf162bd3887a20f63a99a8e9ce3c8daa82aae
-Status: Downloaded newer image for rocker/rstudio:4.4
-docker.io/rocker/rstudio:4.4
+R version 4.4.0 (2024-04-24) -- "Puppy Cup"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+&gt; Sys.getenv("MY_VAR")
+[1] "MY_VALUE"
 </code></pre>
-<p>Let’s inspect the image using the <code>docker inspect</code> command:</p>
-<pre class="shell"><code>docker inspect rocker/rstudio:4.4
-
-[
-    {
-        "Id": "sha256:becb6182a46d22f7088c703dab581948b0748c7a78667b0bac70be37187f8c66",
-        "RepoTags": [
-            "rocker/rstudio:4.4"
-        ],
-        "RepoDigests": [
-            "rocker/rstudio@sha256:b0aab99fef930d2e3ac49eba807bf162bd3887a20f63a99a8e9ce3c8daa82aae"
-        ],
-        "Parent": "",
-        "Comment": "buildkit.dockerfile.v0",
-        "Created": "2024-05-13T10:18:35.446606479Z",
-        "Container": "",
-        "ContainerConfig": {
-            "Hostname": "",
-            "Domainname": "",
-            "User": "",
-            "AttachStdin": false,
-            "AttachStdout": false,
-            "AttachStderr": false,
-            "Tty": false,
-            "OpenStdin": false,
-            "StdinOnce": false,
-            "Env": null,
-            "Cmd": null,
-            "Image": "",
-            "Volumes": null,
-            "WorkingDir": "",
-            "Entrypoint": null,
-            "OnBuild": null,
-            "Labels": null
-        },
-        "DockerVersion": "",
-        "Author": "",
-        "Config": {
-            "Hostname": "",
-            "Domainname": "",
-            "User": "",
-            "AttachStdin": false,
-            "AttachStdout": false,
-            "AttachStderr": false,
-            "ExposedPorts": {
-                "8787/tcp": {}
-            },
-            "Tty": false,
-            "OpenStdin": false,
-            "StdinOnce": false,
-            "Env": [
-                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-                "R_VERSION=4.4.0",
-                "R_HOME=/usr/local/lib/R",
-                "TZ=Etc/UTC",
-                "CRAN=https://p3m.dev/cran/__linux__/jammy/latest",
-                "LANG=en_US.UTF-8",
-                "S6_VERSION=v2.1.0.2",
-                "RSTUDIO_VERSION=2024.04.1+748",
-                "DEFAULT_USER=rstudio"
-            ],
-            "Cmd": [
-                "/init"
-            ],
-            "ArgsEscaped": true,
-            "Image": "",
-            "Volumes": null,
-            "WorkingDir": "",
-            "Entrypoint": null,
-            "OnBuild": null,
-            "Labels": {
-                "org.opencontainers.image.authors": "Carl Boettiger &lt;cboettig@ropensci.org&gt;",
-                "org.opencontainers.image.base.name": "docker.io/library/ubuntu:jammy",
-                "org.opencontainers.image.description": "RStudio Server with fixed version of R",
-                "org.opencontainers.image.licenses": "GPL-2.0-or-later",
-                "org.opencontainers.image.ref.name": "ubuntu",
-                "org.opencontainers.image.revision": "dfa8e3d174f6bb7aaa1f9a8a7b471bdd6ef50366",
-                "org.opencontainers.image.source": "https://github.com/rocker-org/rocker-versioned2",
-                "org.opencontainers.image.title": "rocker/rstudio",
-                "org.opencontainers.image.vendor": "Rocker Project",
-                "org.opencontainers.image.version": "R-4.4.0"
-            }
-        },
-        "Architecture": "arm64",
-        "Os": "linux",
-        "Size": 2172808764,
-        "VirtualSize": 2172808764,
-        "GraphDriver": {
-            "Data": {
-                "LowerDir": "/var/lib/docker/overlay2/3729e6d9a3561c260fe454f4838f955d01f813b5eba2cae18e33da2671ca08e8/diff:/var/lib/docker/overlay2/d796c8cd0d3515c1b4f5973d3fc6595efd4841e31cdd4b9de01ab1ea5e952dc9/diff:/var/lib/docker/overlay2/fb601679c363675abb5a4db1dda3dd7d2db5bbf647812f19cb15527e82ddc7a1/diff:/var/lib/docker/overlay2/fba04399d1d6602d370cb888711a86cd673c8f5ab5bf591ec3b1ba20a5f6900d/diff:/var/lib/docker/overlay2/d91fb5888c1bcdf14e4c13980003a971694d96b0c8a4fdffc82865d83f1ca75e/diff:/var/lib/docker/overlay2/a058ada97238094f1d2ccdb362092fadd2f3d565040f1f19e786b92151c7fc34/diff:/var/lib/docker/overlay2/dbc40b2675396cf40a90f2423e561b2f009425c8b14309306a71b8e2366619e2/diff:/var/lib/docker/overlay2/96af8f52d1bacfa8dbff29e00069b2de8f97152de30efaa8c8ff6a73c9574f38/diff:/var/lib/docker/overlay2/90d65f022c6dac58c2e92da93a1842ccc54b7ae86483dc1eac84757ba9756af5/diff:/var/lib/docker/overlay2/2d170fc585e0a11b641479d5bb30c22d8fc06dc985371afa49d426c4ed1ae51e/diff:/var/lib/docker/overlay2/ea5019d71c56a137499ddd6e42cdb7f799ecf31b4559f802b947a51ca7168709/diff:/var/lib/docker/overlay2/282837f9b3df6c4f7f73f7ae593fd6248c212d551892a018c3ff4ec5e43da753/diff:/var/lib/docker/overlay2/1473d9373d0fb6c7ea4261324931190b4d7456e2a4382f30e874c930f7ada22b/diff:/var/lib/docker/overlay2/db0570895f19f40b48af680438e29315b8ca3db510e9bbc36a01076c5d88a189/diff:/var/lib/docker/overlay2/8b192d70a5882f9bf134f52edc4492959f24ca372222481f147db9f5cde4258d/diff:/var/lib/docker/overlay2/020b81a886e5b4f955ba735c1ceec2e64fb2adb6e8094c99e7b2091607187988/diff:/var/lib/docker/overlay2/e67158f4615da29fa5aa82d49fec7f20b9cca47faf79f1171271a89aaa0ad52b/diff",
-                "MergedDir": "/var/lib/docker/overlay2/798e3379deda1c96016acffb4f157d346b903bae02c2d9a62c731aa4ab2f5d85/merged",
-                "UpperDir": "/var/lib/docker/overlay2/798e3379deda1c96016acffb4f157d346b903bae02c2d9a62c731aa4ab2f5d85/diff",
-                "WorkDir": "/var/lib/docker/overlay2/798e3379deda1c96016acffb4f157d346b903bae02c2d9a62c731aa4ab2f5d85/work"
-            },
-            "Name": "overlay2"
-        },
-        "RootFS": {
-            "Type": "layers",
-            "Layers": [
-                "sha256:842bef16b8fb80459504b4621523ac3d78faf7e01d6d9fa7076ed6d4a8f49830",
-                "sha256:2c68b352337ae04a9f7fce80007c19e3f2c874eadffc85199955cfcf44d9061c",
-                "sha256:0fad67fdf921f7ed4f040284f6146e8375715129cd4d15bb36b9235242360b10",
-                "sha256:2ef96c4a0e68a2c895ff11cf39f69113ceb277044912459a5e0cc24e7d21b790",
-                "sha256:f8b9f8602a972d98720bd99f4f51c8379b6b845516214956d7d4d453dc39e683",
-                "sha256:2fc954a61b038a031d1d0c5162274d55136b031c5ba8df8b1d6c4ab7ae20bccf",
-                "sha256:6ca11d07fecd4bfe9b164c2314d828a3c9fda533735310a3085d22feed7ed9a6",
-                "sha256:5b805848d8250ae9142acdec752e1e52ea94770dd36f3a9b54be0535d0a76cb0",
-                "sha256:396ebfd3b2cc4e126316d78ed6370bca9a665c075d213926b8c5a3cd4d05cf87",
-                "sha256:0ebe277907d2119217f2716a80f22584ce0263337b565159144840ef8b4db697",
-                "sha256:0b4b2142410dd85ad91bc0a3001d70ce6a4554b4b50b9cb8becba2d50a7f2e81",
-                "sha256:c140f6799583e787451c39b0039c03adff38330a6073adf1aa813b80473266d8",
-                "sha256:b800b064a0971dac8abe17ed5a5b7e0239992220e2e7b87e44b42216f4027200",
-                "sha256:3a6a4a046836fb006775ccc4feaf98bfd0cb6144ccf13f7aa21477f0894231b2",
-                "sha256:696cb3ec82e9bf48c9885319b349334e586ab82d7f1d5661bc6e96d46471d2fb",
-                "sha256:a2349bfceca1a0b3f483e7818dbb188494ec7e6125e17bb66fdc3e057c6553ae",
-                "sha256:19d70fd56e6657c042bbb86375cd13e6f5d3f14a3d032065200464319f524739",
-                "sha256:07fa9e3dc45416e6f0cdf715aaed0e1f3a090d4c312449603762ce7fd4dc5e5a"
-            ]
-        },
-        "Metadata": {
-            "LastTagTime": "0001-01-01T00:00:00Z"
-        }
-    }
-]</code></pre>
-<p>If you thing to notice, the image expose a port <code>8787</code> during the run time of the container and we will use to map the container to the browser:</p>
-<pre class="shell"><code>docker inspect rocker/rstudio:4.4 | jq '.[]| .Config.ExposedPorts'
-
-{
-  "8787/tcp": {}
-}</code></pre>
-<p>We will use the <code>port</code> argument (or <code>-p</code>) to expose the container port to the local port:</p>
-<pre class="shell"><code>docker run --rm -ti \
- -v ~/Personal/tutorials/r-medicine-vscode-workshop/scripts/:/home/rstudio/scripts \
- -v ~/Personal/tutorials/r-medicine-vscode-workshop/data/:/home/rstudio/data \
--e PASSWORD=yourpassword \
--p 8787:8787 rocker/rstudio:4.4</code></pre>
-<p><strong>Note:</strong> The port mapping logic of the <code>port</code> argument use the following logic - <code>local_port:container_port</code>.</p>
-<p>We can pair the local RStudio config with the ones on the container by mounting the RStudio config’s folder:</p>
-<pre class="shell"><code>docker run --rm -ti \
--v ~/Personal/tutorials/r-medicine-vscode-workshop/scripts/:/home/rstudio/scripts \
--v ~/Personal/tutorials/r-medicine-vscode-workshop/data/:/home/rstudio/data \
--v ~/.config/rstudio/:/home/rstudio/.config/rstudio \
--e PASSWORD=yourpassword \
--p 8787:8787 rocker/rstudio:4.4</code></pre>
 
 
 
@@ -403,6 +264,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

@@ -2,8 +2,6 @@
 title: "Launching RStudio Inside A Container"
 ---
 
-WIP
-
 In this section, we will see how to launch an RStudio server inside a container using the [Rocker RStudio image](https://hub.docker.com/r/rocker/rstudio/tags).
 
 Let's start by pulling the `rocker/rstudio` image. The image has multiple R version and it supports both amd64 and arm64 architecture. We will pull version 4.4 (e.g., R version 4.4.0):

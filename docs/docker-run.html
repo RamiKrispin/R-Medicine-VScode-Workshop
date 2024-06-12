@@ -35,10 +35,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +70,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -95,6 +96,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -167,13 +169,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker-args.html" class="sidebar-item-text sidebar-link">
+  <a href="./docker-env.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Using Environment Variables</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rstudio.html" class="sidebar-item-text sidebar-link">
+  <a href="./docker-rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Launching RStudio Inside A Container</span></a>
   </div>
 </li>
@@ -207,15 +209,14 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>WIP</p>
 <p>In this section, we will review the <code>docker run</code> command. The <code>docker run</code> command enables us to spin an image into a container. Let’s use the <code>run</code> command to launch the <code>r-base</code> image we pulled in the previous section inside a container:</p>
 <pre class="shell"><code>docker run rocker/r-base</code></pre>
-<p>This will results in the below warning and error:</p>
+<p>This will result in the below warning and error:</p>
 <pre class="shell"><code>WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
 Fatal error: you must specify '--save', '--no-save' or '--vanilla'</code></pre>
-<p>The main reason for getting this error is releated to the execution type of the container which is not aligned with CMD command. To solve this issue we will run the container in an interactive mode using the <code>--interactive --tty</code> arguments:</p>
+<p>The main reason for getting this error is related to the execution type of the container, which is not aligned with the <code>CMD</code> command. To solve this issue, we will run the container in an interactive mode using the&nbsp;<code>--interactive --tty</code>&nbsp;arguments:</p>
 <pre class="shell"><code>docker run --interactive --tty rocker/r-base</code></pre>
-<p>This will open R session inside a container:</p>
+<p>This will open the R session inside a container:</p>
 <pre class="shell"><code>WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
 
 R version 4.4.0 (2024-04-24) -- "Puppy Cup"
@@ -243,22 +244,22 @@ Type 'q()' to quit R.
 <pre class="shell"><code>CONTAINER ID   IMAGE                                                                           COMMAND                  CREATED          STATUS                  PORTS                                       NAMES
 8e4025e4b774   rocker/r-base                                                                   "R"                      14 seconds ago   Up 14 seconds                                                       peaceful_shaw
 </code></pre>
-<p>Docker by default, if the user does not set a name to the image it will assign a random name. In this case, it named the image as <code>peaceful_shaw</code>. In addition, it provides the container ID, which enables to reference the container when applying some commands.</p>
-<p>Another useful command is the <code>docker exec</code> which enables us to SSH to a running container. It is very useful command when you want to test or debug features on the image while running. We will use the container ID from the <code>docker ps</code> output and open a <code>bash</code> terminal:</p>
+<p>By default, Docker assigns a random name to the image if the user does not set a name. In this case, it named the image <code>peaceful_shaw</code>. In addition, it provides the container ID, which enables the user to reference the container when applying some commands.</p>
+<p>Another useful command is the&nbsp;<code>docker exec</code>, which enables us to SSH a running container. It is a very useful command when you want to test or debug features on the image while running. We will use the container ID from the&nbsp;<code>docker ps</code>&nbsp;output and open a&nbsp;<code>bash</code>&nbsp;terminal:</p>
 <pre class="shell"><code>docker exec -it 8e4025e4b774 bash   </code></pre>
-<p>This will open a new terminal inside the container and enables us to access the container file system:</p>
+<p>This will open a new terminal inside the container and enable us to access the container file system:</p>
 <pre class="shell"><code>root@8e4025e4b774:/#</code></pre>
 <p>For example, we can print the files and folders in the container root folder using the <code>ls</code> command:</p>
 <pre class="shell"><code>root@8e4025e4b774:/# ls
 bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre>
-<p>We can create a script and running it either from the open R terminal using the <code>source</code> command or directly from the SSH terminal</p>
+<p>We can create a script and run it either from the open R terminal using the <code>source</code> command or directly from the SSH terminal:</p>
 <pre class="shell"><code>root@8e4025e4b774:/# echo 'print("Hello World!")' &gt; hello-world.R
 root@8e4025e4b774:/# Rscript 'hello-world.R'
 [1] "Hello World!"</code></pre>
-<p>We can stop the session by using the <code>quit()</code> command from the open R session:</p>
+<p>To stop the session, use the R’s <code>quit()</code> command:</p>
 <pre class="shell"><code>&gt; quit()
 Save workspace image? [y/n/c]: n</code></pre>
-<p>Alternativly, you can use the <code>docker kill</code> command, which will stop the run time of the container:</p>
+<p>Alternatively, you can use the&nbsp;<code>docker kill</code>&nbsp;command, which will stop the run time of the container:</p>
 <pre class="shell"><code>docker kill 8e4025e4b774</code></pre>
 <p>One of the issues of this workflow is that the container, by default, is running in ephemeral mode. In the next section, we will review how to mount a local folder to the container to make the code persistence.</p>
 
@@ -285,6 +286,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

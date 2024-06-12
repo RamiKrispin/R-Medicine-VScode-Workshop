@@ -2,14 +2,11 @@
 title: "Docker Pull"
 ---
 
-WIP
+The `docker pull` command, as the name implies, enables us to pull images from an image registry service to the local machine. Likewise, the `docker push` command enables the push of images from the local machine to the image registry.
 
-The `docker pull` command, as the name implies, enables us to pull images from an image registery service to the local machine. Likewise, the `docker push` command enables to push images from the local machine to the image registery.
+We will use Docker Hub to pull and push images throughout the workshop. Before getting started, make sure that the [Docker Hub](https://hub.docker.com/) is open and login to your Docker Hub account using the `docker login` command:
 
-
-Throughout the workshop, we will use [Docker Hub](https://hub.docker.com/) to pull and push images. Before getting started, make sure that the Docker Desktop is open and login to your Docker Hub account using the `docker login` command:
-
-``` shell
+```shell
  docker login
  ```
 
@@ -31,7 +28,7 @@ Next, let's use the `docker pull` command to pull `r-base` image from the [Rocke
 docker pull rocker/r-base
 ```
 
-By default, if image tag is not specify, it will pull the latest version, in this case tagged as `latest`:
+By default, if the image tag is not specified, it will pull the latest version, in this case, tagged as `latest`:
 ```shell
 latest: Pulling from rocker/r-base
 dd55a40fdbce: Pull complete
@@ -45,7 +42,7 @@ Status: Downloaded newer image for rocker/r-base:latest
 docker.io/rocker/r-base:latest
 ```
 
-You can notice from above log that Docker pulls the images by its layers. Each layer has a unique identifier and if it already exists in the local machine it will use. We can use the `docker images` command to review the image details:
+You can notice from the above log that Docker pulls the images by its layers. Each layer has a unique identifier, and if it already exists in the local machine, it will be used. We can use the `docker images` command to review the image details:
 
 ```shell
 docker images
@@ -58,7 +55,7 @@ REPOSITORY                                                                      
 rocker/r-base                                                                   latest        b45bc6363d5c   6 weeks ago    900MB
 ```
 
-To get a comprehensive details on the image you can use the `inspect` command:
+To get comprehensive details on the image, you can use the `inspect` command:
 
 ```shell
 docker inspect rocker/r-base

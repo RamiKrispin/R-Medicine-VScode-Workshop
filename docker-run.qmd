@@ -1,7 +1,6 @@
 ---
 title: "Docker Run"
 ---
-WIP
 
 In this section, we will review the `docker run` command. The `docker run` command enables us to spin an image into a container. Let's use the `run` command to launch the `r-base` image we pulled in the previous section inside a container:
 
@@ -9,19 +8,20 @@ In this section, we will review the `docker run` command. The `docker run` comma
 docker run rocker/r-base
 ```
 
-This will results in the below warning and error:
+This will result in the below warning and error:
 
 ``` shell
 WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
 Fatal error: you must specify '--save', '--no-save' or '--vanilla'
 ```
-The main reason for getting this error is releated to the execution type of the container which is not aligned with CMD command. To solve this issue we will run the container in an interactive mode using the `--interactive --tty` arguments:
+The main reason for getting this error is related to the execution type of the container, which is not aligned with the `CMD` command. To solve this issue, we will run the container in an interactive mode using the `--interactive --tty` arguments:
+
 
 ```shell
 docker run --interactive --tty rocker/r-base
 ```
 
-This will open R session inside a container:
+This will open the R session inside a container:
 
 ```shell
 WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
@@ -61,14 +61,14 @@ CONTAINER ID   IMAGE                                                            
 
 ```
 
-Docker by default, if the user does not set a name to the image it will assign a random name. In this case, it named the image as `peaceful_shaw`. In addition, it provides the container ID, which enables to reference the container when applying some commands.
+By default, Docker assigns a random name to the image if the user does not set a name. In this case, it named the image `peaceful_shaw`. In addition, it provides the container ID, which enables the user to reference the container when applying some commands.
 
-Another useful command is the `docker exec` which enables us to SSH to a running container. It is very useful command when you want to test or debug features on the image while running. We will use the container ID from the `docker ps` output and open a `bash` terminal:
+Another useful command is the `docker exec`, which enables us to SSH a running container. It is a very useful command when you want to test or debug features on the image while running. We will use the container ID from the `docker ps` output and open a `bash` terminal:
 
 ``` shell
 docker exec -it 8e4025e4b774 bash   
 ```
-This will open a new terminal inside the container and enables us to access the container file system:
+This will open a new terminal inside the container and enable us to access the container file system:
 
 ``` shell
 root@8e4025e4b774:/#
@@ -81,7 +81,7 @@ root@8e4025e4b774:/# ls
 bin  boot  dev	etc  home  lib	lib64  media  mnt  opt	proc  root  run  sbin  srv  sys  tmp  usr  var
 ```
 
-We can create a script and running it either from the open R terminal using the `source` command or directly from the SSH terminal
+We can create a script and run it either from the open R terminal using the `source` command or directly from the SSH terminal:
 
 ``` shell
 root@8e4025e4b774:/# echo 'print("Hello World!")' > hello-world.R
@@ -89,14 +89,14 @@ root@8e4025e4b774:/# Rscript 'hello-world.R'
 [1] "Hello World!"
 ```
 
-We can stop the session by using the `quit()` command from the open R session:
+To stop the session, use the R's `quit()` command:
 
 ```shell
 > quit()
 Save workspace image? [y/n/c]: n
 ```
 
-Alternativly, you can use the `docker kill` command, which will stop the run time of the container:
+Alternatively, you can use the `docker kill` command, which will stop the run time of the container:
 
 ```shell
 docker kill 8e4025e4b774

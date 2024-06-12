@@ -35,10 +35,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +70,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -95,6 +96,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -167,13 +169,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker-args.html" class="sidebar-item-text sidebar-link">
+  <a href="./docker-env.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Using Environment Variables</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rstudio.html" class="sidebar-item-text sidebar-link">
+  <a href="./docker-rstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Launching RStudio Inside A Container</span></a>
   </div>
 </li>
@@ -207,9 +209,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>WIP</p>
-<p>The <code>docker pull</code> command, as the name implies, enables us to pull images from an image registery service to the local machine. Likewise, the <code>docker push</code> command enables to push images from the local machine to the image registery.</p>
-<p>Throughout the workshop, we will use <a href="https://hub.docker.com/">Docker Hub</a> to pull and push images. Before getting started, make sure that the Docker Desktop is open and login to your Docker Hub account using the <code>docker login</code> command:</p>
+<p>The&nbsp;<code>docker pull</code>&nbsp;command, as the name implies, enables us to pull images from an image registry service to the local machine. Likewise, the&nbsp;<code>docker push</code>&nbsp;command enables the push of images from the local machine to the image registry.</p>
+<p>We will use&nbsp;Docker Hub&nbsp;to pull and push images throughout the workshop. Before getting started, make sure that the <a href="https://hub.docker.com/">Docker Hub</a> is open and login to your Docker Hub account using the&nbsp;<code>docker login</code>&nbsp;command:</p>
 <pre class="shell"><code> docker login</code></pre>
 <p>You will have to enter your Docker Hub username and password, and you should expect the following output if the login is successful:</p>
 <pre class="shell"><code>Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
@@ -221,7 +222,7 @@ Logging in with your password grants your terminal complete access to your accou
 For better security, log in with a limited-privilege personal access token. Learn more at https://docs.docker.com/go/access-tokens/</code></pre>
 <p>Next, let’s use the <code>docker pull</code> command to pull <code>r-base</code> image from the <a href="https://hub.docker.com/r/rocker/r-base">Rocker project</a>:</p>
 <pre class="shell"><code>docker pull rocker/r-base</code></pre>
-<p>By default, if image tag is not specify, it will pull the latest version, in this case tagged as <code>latest</code>:</p>
+<p>By default, if the image tag is not specified, it will pull the latest version, in this case, tagged as&nbsp;<code>latest</code>:</p>
 <pre class="shell"><code>latest: Pulling from rocker/r-base
 dd55a40fdbce: Pull complete
 f5be2f3d564a: Pull complete
@@ -232,12 +233,12 @@ db1a17629c49: Pull complete
 Digest: sha256:76d5085d8f7f956d657fa8157119ee721e200768ebf4238e8eb7622963741a52
 Status: Downloaded newer image for rocker/r-base:latest
 docker.io/rocker/r-base:latest</code></pre>
-<p>You can notice from above log that Docker pulls the images by its layers. Each layer has a unique identifier and if it already exists in the local machine it will use. We can use the <code>docker images</code> command to review the image details:</p>
+<p>You can notice from the above log that Docker pulls the images by its layers. Each layer has a unique identifier, and if it already exists in the local machine, it will be used. We can use the&nbsp;<code>docker images</code>&nbsp;command to review the image details:</p>
 <pre class="shell"><code>docker images</code></pre>
 <p>And you should expect the below output:</p>
 <pre class="shell"><code>REPOSITORY                                                                      TAG           IMAGE ID       CREATED        SIZE
 rocker/r-base                                                                   latest        b45bc6363d5c   6 weeks ago    900MB</code></pre>
-<p>To get a comprehensive details on the image you can use the <code>inspect</code> command:</p>
+<p>To get comprehensive details on the image, you can use the&nbsp;<code>inspect</code>&nbsp;command:</p>
 <pre class="shell"><code>docker inspect rocker/r-base</code></pre>
 <p>The output includes a comprehensive metadata, such as the envornment variable, image layers and size, architecture type:</p>
 <pre class="shell"><code>[
@@ -364,6 +365,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

@@ -2,9 +2,6 @@
 title: "Introduction 🐳"
 subtitle: "R/Medicine 2024 Conference"
 author: "Rami Krispin"
-theme:
-  light: flatly
-  dark: darkly
 ---
 
 Materials for the [R/Medicine 2024 conference](https://rconsortium.github.io/RMedicine_website/) *Setting Up a Dockerized R Development Environment with VScode* workshop.
